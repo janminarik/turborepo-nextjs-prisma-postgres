@@ -7,16 +7,16 @@ export async function GET(request: NextRequest, { params }: { params: { postIdOr
     const post = await prisma.post.findUnique({
       where: {
         // postStatus: PostStatus.PUBLISHED,
-        id: params.postIdOrSlug,
-        // slug: params.postIdOrSlug,
-        OR: [
-          {
-            id: params.postIdOrSlug,
-          },
-          {
-            slug: params.postIdOrSlug,
-          },
-        ],
+        // id: params.postIdOrSlug,
+        slug: params.postIdOrSlug,
+        // OR: [
+        //   {
+        //     id: params.postIdOrSlug,
+        //   },
+        //   {
+        //     slug: params.postIdOrSlug,
+        //   },
+        // ],
       },
       select: postSelect,
     })
