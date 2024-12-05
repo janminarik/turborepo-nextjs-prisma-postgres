@@ -1,9 +1,9 @@
 import "./globals.css"
 
-import AuthProvider from "providers/authProvider"
 import { ToastContainer } from "react-toastify"
 
 import Nav from "@/molecules/nav"
+import AuthProvider from "@/providers/authProvider"
 
 import "react-toastify/dist/ReactToastify.css"
 import "remixicon/fonts/remixicon.css"
