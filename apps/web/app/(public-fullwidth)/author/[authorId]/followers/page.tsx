@@ -15,9 +15,6 @@ export default async function Page({ params }: { params: { authorId: string } })
       <UserProfile author={author} />
       <div className="col-span-8 flex flex-col gap-4">
         <FollowerItem />
-        <FollowerItem />
-        <FollowerItem />
-        <FollowerItem />
       </div>
     </div>
   )
