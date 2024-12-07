@@ -3,8 +3,8 @@ import UserProfile from "@/molecules/follower/user-profile"
 import PostItem from "@/molecules/posts/post-item"
 
 export const metadata = {
-  title: "Tags",
-  description: "A list of tags used in the blog posts",
+  title: "Author",
+  description: "A list of posts by the author",
 }
 
 export default async function Page({ params }: { params: { authorId: string } }) {
