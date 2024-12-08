@@ -1,4 +1,5 @@
 import React from "react"
+
 import reactHtmlParser from "react-html-parser"
 
 import { TPostItem } from "@/types/posts"

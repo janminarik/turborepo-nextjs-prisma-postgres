@@ -1,4 +1,5 @@
 import { useState } from "react"
+
 import { getSession } from "next-auth/react"
 import { toast } from "react-toastify"
 
@@ -40,15 +41,21 @@ const useLike = ({ post }: UseLikeProps): UseLikeReturn => {
 
     try {
       setIsLoading(true)
-      await fetch(generatePath(APP_APIS.protected.post.actions, { postId: post?.id }), {
+      await fetch(generatePath(APP_APIS.protected.post.ACTIONS, { postId: post?.id }), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           action: isLiked ? "UNLIKE" : "LIKE",
+          postId: post?.id,
         }),
       })
+        .then((res) => res.json())
+        .catch((error) => {
+          throw new Error(error.message)
+        })
+
       setIsLiked((prev) => !prev)
       setTotalLike((prev) => (isLiked ? prev - 1 : prev + 1))
     } catch (error) {

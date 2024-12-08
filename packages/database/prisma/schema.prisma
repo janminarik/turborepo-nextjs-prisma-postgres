@@ -5,6 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+<<<<<<< HEAD
   url      = env("DATABASE_URL")
 }
 
@@ -236,6 +237,15 @@ model ParentPost {
   Post_ParentPost_postIdToPost       Post     @relation("ParentPost_postIdToPost", fields: [postId], references: [id])
 
   @@id([parentPostId, postId])
+=======
+  url      = "postgresql://postgres:example@localhost:5432/codeforstartup" //env("DATABASE_URL")
+}
+
+enum UserType {
+  ADMIN
+  MODERATOR
+  AUTHOR
+>>>>>>> main
 }
 
 enum PostType {
@@ -273,6 +283,56 @@ enum PostStatus {
   PUBLISHED
 }
 
+<<<<<<< HEAD
+=======
+model Post {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title   String  @db.VarChar(255)
+  content String?
+  slug    String  @unique @db.VarChar(255)
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  totalView    Int @default(0)
+  totalLike    Int @default(0)
+  totalShare   Int @default(0)
+  totalComment Int @default(0)
+  totalFollow  Int @default(0)
+
+  parentPostId String?
+  pinned       Boolean @default(false)
+  userPinned   Boolean @default(false)
+
+  postType   PostType     @default(POST)
+  postStatus PostStatus   @default(DRAFT)
+  postFormat PostFormat   @default(STANDARD)
+  tagOnPost  TagOnPost[]
+  postOnUser PostOnUser[]
+  comments   Comment[]
+  parentOf   ParentPost[] @relation("parentPost")
+  parent     ParentPost[] @relation("post")
+  image      Image?       @relation(fields: [imageId], references: [id])
+  imageId    String?
+}
+
+model ParentPost {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  parentPostId String
+  parentPost   Post   @relation("parentPost", fields: [parentPostId], references: [id])
+
+  postId String
+  post   Post   @relation("post", fields: [postId], references: [id])
+
+  @@id([parentPostId, postId])
+}
+
+>>>>>>> main
 enum PostOnUserType {
   LIKE
   FAVORITE
@@ -281,6 +341,155 @@ enum PostOnUserType {
   PINNED
 }
 
+<<<<<<< HEAD
+=======
+model PostOnUser {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  postId String
+  post   Post   @relation(fields: [postId], references: [id])
+
+  type PostOnUserType @default(LIKE)
+
+  @@id([userId, postId, type])
+}
+
+model PostContentType {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name        String  @unique @db.VarChar(255)
+  slug        String  @unique @db.VarChar(255)
+  description String?
+}
+
+model PostMetaData {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title   String  @db.VarChar(255)
+  content String?
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+
+  userType UserType @default(AUTHOR)
+
+  username       String? @unique
+  bio            String?
+  website        String?
+  address        String?
+  phone          String?
+  twitter        String?
+  facebook       String?
+  github         String?
+  youtube        String?
+  linkedin       String?
+  instagram      String?
+  totalPost      Int     @default(0)
+  totalView      Int     @default(0)
+  totalFollower  Int     @default(0)
+  totalFollowing Int     @default(0)
+
+  accounts Account[]
+  sessions Session[]
+
+  post          Post[]
+  postMetaData  PostMetaData[]
+  postOnUser    PostOnUser[]
+  followers     Follower[]      @relation("follower")
+  followings    Follower[]      @relation("following")
+  comment       Comment[]
+  commentOnUser CommentOnUser[]
+  images        Image[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Follower {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  followerId String
+  follower   User   @relation("follower", fields: [followerId], references: [id])
+
+  followingId String
+  following   User   @relation("following", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId])
+}
+
+model TagOnPost {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  postId String
+  post   Post   @relation(fields: [postId], references: [id])
+
+  tagId String
+  tag   Tags   @relation(fields: [tagId], references: [id])
+
+  @@id([postId, tagId])
+}
+
+model Tags {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  type TagType @default(TAG)
+
+  totalPost      Int @default(0)
+  totalView      Int @default(0)
+  totalLike      Int @default(0)
+  totalFollowers Int @default(0)
+
+  name        String  @unique @db.VarChar(255)
+  slug        String  @unique @db.VarChar(255)
+  description String?
+  parent      String? @db.VarChar(255)
+  count       Int     @default(0)
+
+  tagOnPost TagOnPost[]
+  image     Image?      @relation(fields: [imageId], references: [id])
+  imageId   String?
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  content String?
+
+  author   User   @relation(fields: [authorId], references: [id])
+  authorId String
+
+  parentCommentId String?
+  pinned          Boolean @default(false)
+
+  commentOnPostId String
+  commentOnPost   Post            @relation(fields: [commentOnPostId], references: [id])
+  commentOnUser   CommentOnUser[]
+}
+
+>>>>>>> main
 enum CommentOnUserType {
   LIKE
   FAVORITE
@@ -293,4 +502,28 @@ enum UserType {
   ADMIN
   MODERATOR
   AUTHOR
+}
+
+model Image {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  path       String
+  name       String
+  hash       String
+  ext        String
+  width      Int
+  height     Int
+  format     String
+  previewUrl String?
+  caption    String?
+  url        String
+  mime       String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  posts Post[]
+  tags  Tags[]
 }

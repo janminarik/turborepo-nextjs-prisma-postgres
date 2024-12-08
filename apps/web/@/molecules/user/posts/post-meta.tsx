@@ -1,9 +1,9 @@
 // generate react component meta data for post with author, date, and tags
-import dayjs from "dayjs"
 import Link from "next/link"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { TPostItem } from "@/types/posts"
+import { TPostItem } from "database"
+import dayjs from "dayjs"
+import { Avatar, AvatarFallback, AvatarImage } from "ui"
 
 export type PostMetaProps = {
   post: TPostItem
@@ -16,7 +16,10 @@ export default function PostMeta({ post }: PostMetaProps) {
         <div className="flex items-center">
           <div>
             <Avatar className="h-9 w-9">
-              <AvatarImage src={post?.author?.image || ""} alt={post?.author?.name} />
+              <AvatarImage
+                src={post?.author?.image || ""}
+                alt={post?.author?.name}
+              />
               <AvatarFallback>{(post?.author?.name || "CO").slice(0, 2)}</AvatarFallback>
             </Avatar>
           </div>

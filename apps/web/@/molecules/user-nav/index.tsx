@@ -1,10 +1,12 @@
-import { authConfigs } from "configs/auth"
-import { getServerSession } from "next-auth"
 import Link from "next/link"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { auth } from "configs/auth"
+import { getTranslations } from "next-intl/server"
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -13,46 +15,89 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+  Typography,
+} from "ui"
+
 import { LogoutMenu } from "./LogoutMenu"
 
 export async function UserNav() {
-  const session = await getServerSession(authConfigs)
+  const session = await auth()
+  const t = await getTranslations()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+        <Button
+          variant="ghost"
+          className="relative h-8 w-8 rounded-full"
+        >
           <Avatar className="h-9 w-9">
-            <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name} />
+            <AvatarImage
+              src={session?.user?.image || ""}
+              alt={session?.user?.name}
+            />
             <AvatarFallback>{(session?.user?.name || "CO").slice(0, 2)}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="end" forceMount>
+      <DropdownMenuContent
+        className="w-56"
+        align="end"
+        forceMount
+      >
         <DropdownMenuLabel className="font-normal">
-          <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{session?.user?.name}</p>
-            <p className="text-xs leading-none text-muted-foreground">{session?.user?.email}</p>
-          </div>
+          <Link href={`/author/${session?.user?.id}`}>
+            <div className="flex flex-col justify-center gap-2 rounded-sm p-2 hover:bg-muted hover:underline">
+              <Typography className="font-bold leading-none">
+                @{session?.user?.name || session?.user?.email.split("@")[0]}
+              </Typography>
+              <Typography
+                variant="span"
+                className="text-xs leading-none text-muted-foreground"
+              >
+                {session?.user?.email}
+              </Typography>
+            </div>
+          </Link>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            Profile
+            <Link
+              href="/user/profile"
+              className="flex flex-1"
+            >
+              {t("common.profile")}
+            </Link>
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
-            <Link href="/user/posts">
-              Posts
-              <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-            </Link>
-          </DropdownMenuItem>
           <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            <Link
+              href="/user/posts"
+              className="flex flex-1"
+            >
+              {t("common.posts")}
+            </Link>
+            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>Password</DropdownMenuItem>
+          {/* <DropdownMenuItem>
+            <Link
+              href="/user/settings"
+              className="flex flex-1"
+            >
+              {t("common.setting")}
+            </Link>
+            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+          </DropdownMenuItem> */}
+          {/* <DropdownMenuItem>
+            <Link
+              href="/user/password"
+              className="flex flex-1"
+            >
+              {t("common.password")}
+            </Link>
+            <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+          </DropdownMenuItem> */}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <LogoutMenu />

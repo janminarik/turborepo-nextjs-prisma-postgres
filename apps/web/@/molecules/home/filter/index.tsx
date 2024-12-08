@@ -1,89 +1,76 @@
 "use client"
 
-import React from "react"
-import Link from "next/link"
+import React, { useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
-import { buttonVariants } from "@/components/ui/button"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { cn } from "@/lib/utils"
+import { FilterValues, PeriodValues } from "database"
+import { cn } from "ui"
 
-enum FilteredValue {
-  lasted = "lasted",
-  hot = "hot",
+import { capitalizeFirstLetter } from "@/utils/text"
+
+import { FilterItem } from "./filter-item"
+
+type FilterProps = {
+  className?: string
 }
 
-const FilterItem = ({ label, param }: { label: string; param: string }) => {
-  const searchParams = useSearchParams()
-
-  const filteredValue = searchParams.get("filter") || FilteredValue.lasted
-  const isFilterItemActive = filteredValue === param
-
-  return (
-    <div className="">
-      <Link
-        href={`/?filter=${param}`}
-        className={cn(
-          buttonVariants({
-            variant: "outline",
-            size: "sm",
-            className: cn("w-[80px] text-gray-500", {
-              "font-bold text-gray-800": isFilterItemActive,
-            }),
-          })
-        )}
-      >
-        <div>{label}</div>
-      </Link>
-    </div>
-  )
-}
-
-const Filter: React.FC = () => {
+const Filter: React.FC<FilterProps> = ({ className = "" }) => {
   const searchParams = useSearchParams()
   const router = useRouter()
   const pathname = usePathname()
 
-  const filterValue = searchParams.get("filter") || FilteredValue.lasted
-  const periodKey = searchParams.get("period") || "today"
-  const shouldShowDateFilter = filterValue === FilteredValue.hot
+  const currentFilterValue = searchParams.get("filter")
+  const periodKey = searchParams.get("period")
+
+  const [filterValue, setFilterValue] = useState<FilterValues>(
+    (currentFilterValue as FilterValues) || FilterValues.LASTED
+  )
+
+  const onChangeFilter = (value: string) => {
+    const urlSearchParam = new URLSearchParams(searchParams)
+    urlSearchParam.set("filter", value)
+    urlSearchParam.delete("period")
+
+    router.push(`${pathname}?${urlSearchParam.toString()}`)
+  }
 
   const onChangePeriod = (value: string) => {
     const urlSearchParam = new URLSearchParams(searchParams)
     urlSearchParam.set("period", value)
+    urlSearchParam.set("filter", FilterValues.HOT)
 
     router.push(`${pathname}?${urlSearchParam.toString()}`)
   }
 
   return (
-    <div className="flex h-10 items-center justify-between">
+    <div className={cn("flex h-10 items-center justify-between", className)}>
       <div className="flex gap-2">
-        <FilterItem label="Lasted" param="lasted" />
-        <FilterItem label="Hot" param="hot" />
+        <FilterItem
+          label="New"
+          isActive={filterValue === "lasted"}
+          onclick={() => {
+            setFilterValue(FilterValues.LASTED)
+            onChangeFilter("lasted")
+          }}
+        />
+        <FilterItem
+          label="Hot"
+          isActive={filterValue === FilterValues.HOT}
+          onclick={() => {
+            setFilterValue(FilterValues.HOT)
+          }}
+        />
       </div>
-      {shouldShowDateFilter && (
-        <div className="flex gap-2">
-          <Select value={periodKey} onValueChange={onChangePeriod}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select period" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="today">Today</SelectItem>
-                <SelectItem value="this-week">This week</SelectItem>
-                <SelectItem value="this-month">This month</SelectItem>
-                <SelectItem value="this-year">This year</SelectItem>
-                <SelectItem value="infinity">Infinity</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+      {filterValue === FilterValues.HOT && (
+        <div className="flex gap-1">
+          {Object.values(PeriodValues).map((period) => (
+            <FilterItem
+              key={period}
+              label={capitalizeFirstLetter(period)}
+              isActive={periodKey === period}
+              onclick={() => onChangePeriod(period)}
+            />
+          ))}
         </div>
       )}
     </div>

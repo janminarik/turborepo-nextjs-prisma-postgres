@@ -1,46 +1,69 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 
-import { TUserItem } from "@/actions/public/authors"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { getUser } from "database"
+import { getTranslations } from "next-intl/server"
+import { Avatar, AvatarFallback, AvatarImage, Card, CardContent, CardHeader, Typography } from "ui"
 
-export type UserProfile = {
-  author: TUserItem
+import FollowButton from "./follow-button"
+
+export type UserProfileProps = {
+  authorId: string
 }
 
-const UserProfile = ({ author }: UserProfile) => {
+export async function UserProfile({ authorId }: UserProfileProps) {
+  const t = await getTranslations()
+  const { data: author, error } = await getUser({ userId: authorId })
+
+  if (error) {
+    return notFound()
+  }
+
   return (
     <div className="col-span-4">
-      <div className="rounded-md bg-white p-8">
-        <div className="flex flex-col items-center justify-center gap-2">
-          <div className="m-0 flex h-[80px] w-[80px] items-center justify-center rounded-[100%] border-dashed border-stone-900 bg-slate-200">
-            <Avatar className="h-20 w-20">
-              <AvatarImage src={author?.image || ""} alt={author?.name} />
-              <AvatarFallback>{(author?.name || "CO").slice(0, 2)}</AvatarFallback>
-            </Avatar>
-          </div>
-          <h1 className="flex-1 text-center text-4xl font-extrabold text-slate-700">
-            <Link href={`${author.id}`}>{author.name}</Link>
-          </h1>
-          <div className="mt-4 flex w-full flex-1 divide-x">
-            <div className="flex flex-1 flex-col items-center justify-center">
-              <div className="font-bold text-slate-800">{author?.post?.length}</div>
-              <div className="text-gray-400 hover:underline">
-                <Link href={`/author/${author?.id}`}>posts</Link>
+      <Card>
+        <CardHeader className="items-center justify-center">
+          <Link href={`/author/${author.id}`}>
+            <div className="m-0 flex h-[80px] w-[80px] items-center justify-center rounded-[100%] border-dashed">
+              <Avatar className="h-20 w-20 rounded-[100%] bg-red-200">
+                <AvatarImage
+                  src={author?.image || ""}
+                  alt={author?.name}
+                />
+                <AvatarFallback>{(author?.name || "CO").slice(0, 2)}</AvatarFallback>
+              </Avatar>
+            </div>
+          </Link>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <h1 className="mb-1 flex-1 text-center text-4xl font-extrabold">
+              <Link href={`/author/${author.id}`}>{author.name}</Link>
+            </h1>
+            <Typography
+              className="text-gray-400"
+              variant="span"
+            >
+              {author?.email}
+            </Typography>
+            <div className="mt-4 flex w-full flex-1 divide-x">
+              <div className="flex flex-1 flex-col items-center justify-center">
+                <div className="font-bold">{author?.totalPost}</div>
+                <div className="hover:underline">
+                  <Link href={`/author/${author?.id}`}>{t("common.posts")}</Link>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col items-center justify-center">
+                <div className="font-bold">{author?.totalFollower}</div>
+                <div className="hover:underline">
+                  <Link href={`/author/${author?.id}/followers`}>{t("common.followers")}</Link>
+                </div>
               </div>
             </div>
-            <div className="flex flex-1 flex-col items-center justify-center">
-              <div className="font-bold text-slate-800">{author?.post?.length}</div>
-              <div className="text-gray-400 hover:underline">
-                <Link href={`/author/${author?.id}/followers`}>followers</Link>
-              </div>
-            </div>
+            <FollowButton authorId={author?.id} />
           </div>
-          <Button className="mt-4 w-full" variant="outline">
-            Follow
-          </Button>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

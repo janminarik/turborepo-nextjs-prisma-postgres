@@ -1,24 +1,63 @@
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import prisma from "database"
-import { NextAuthOptions } from "next-auth"
+import bcryptjs from "bcryptjs"
+import prisma, { getUser } from "database"
+import NextAuth from "next-auth"
+import Credentials from "next-auth/providers/credentials"
 import GithubProvider from "next-auth/providers/github"
 
-export const authConfigs = {
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+  signOut,
+} = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
+    Credentials({
+      credentials: {
+        email: {},
+        password: {},
+      },
+      authorize: async (credentials: Record<string, string>) => {
+        try {
+          // IMPROVE:
+          const { data: user } = await getUser({
+            where: {
+              email: credentials.email,
+            },
+          })
+
+          if (!user) {
+            return null
+          }
+
+          const isPasswordValid = await bcryptjs.compare(credentials.password, user.password)
+
+          if (!isPasswordValid) {
+            return null // Invalid password
+          }
+
+          return user
+        } catch (e) {
+          return null
+        }
+      },
+    }),
   ],
   pages: {
-    signIn: "/signIn",
+    signIn: "/signin",
   },
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
   },
   jwt: {
-    secret: process.env.NEXTAUTH_SECRET,
+    // secret: process.env.NEXTAUTH_SECRET,
   },
   callbacks: {
     redirect: async ({ url, baseUrl }) => {
@@ -41,4 +80,4 @@ export const authConfigs = {
       return token
     },
   },
-} as NextAuthOptions
+})

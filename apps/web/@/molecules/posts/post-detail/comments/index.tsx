@@ -1,21 +1,45 @@
 import React from "react"
 
-interface CommentsProps {}
+import { GetDataSuccessType, TSearchParams } from "@/types"
+import { TCommentItem } from "@/types/comment"
+import { TPostItem } from "@/types/posts"
 
-/**
- * This component displays the comments for a post.
- */
-const Comments: React.FC<CommentsProps> = () => {
-  // TODO: Implement the logic to fetch and display comments
+import CommentHeader from "./comment-header"
+import CommentList from "./comment-list"
+
+interface CommentsProps {
+  post: TPostItem
+  searchParams: TSearchParams
+}
+
+const Comments: React.FC<CommentsProps> = async ({ post, searchParams }) => {
+  let comments: GetDataSuccessType<TCommentItem[]> = null
+  try {
+    const urlSearchParam = new URLSearchParams(searchParams as Record<string, string>)
+    const commentRaw = await fetch(
+      `${
+        process.env.NEXT_PUBLIC_FRONTEND_URL
+      }/api/public/post/${post?.id}/comments?${urlSearchParam.toString()}`,
+      {
+        cache: "no-cache",
+      }
+    )
+
+    comments = await commentRaw.json()
+  } catch (error) {
+    //
+  }
 
   return (
-    <div className="mt-8 rounded-md bg-white">
-      <div className="border-b border-b-slate-300 px-8 py-4">
-        <h2 className="font-bold">Comments</h2>
-      </div>
-      <div className="p-8">
-        <p className="text-slate-500">No comments yet.</p>
-      </div>
+    <div className="mt-8 rounded-md border">
+      <CommentHeader
+        post={post}
+        comments={comments}
+      />
+      <CommentList
+        comments={comments?.data}
+        postId={post?.id}
+      />
     </div>
   )
 }

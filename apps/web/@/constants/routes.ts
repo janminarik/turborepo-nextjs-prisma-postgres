@@ -2,8 +2,8 @@ const APP_ROUTES = {
   // Public routes
   HOME: "/",
 
-  LOGIN: "/login",
-  REGISTER: "/register",
+  LOGIN: "/signin",
+  REGISTER: "/signup",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password",
   VERIFY_EMAIL: "/verify-email",
@@ -21,13 +21,13 @@ const APP_ROUTES = {
   AUTHORS: "/authors",
 
   // Authenticated routes
-  PROFILE: "user/profile",
-  SETTINGS: "user/settings",
-  CHANGE_PASSWORD: "user/change-password",
+  PROFILE: "/user/profile",
+  SETTINGS: "/user/settings",
+  CHANGE_PASSWORD: "/user/change-password",
 
-  USER_POSTS: "user/posts",
-  CREATE_POST: "user/posts/create",
-  EDIT_POST: "user/posts/:postId/edit",
+  USER_POSTS: "/user/posts",
+  CREATE_POST: "/user/posts/create",
+  EDIT_POST: "/user/posts/:postId/edit",
 }
 
 export default APP_ROUTES

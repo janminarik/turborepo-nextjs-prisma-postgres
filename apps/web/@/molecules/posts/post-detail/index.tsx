@@ -1,11 +1,13 @@
 import Link from "next/link"
 
+import { TPostItem } from "database"
+import { Typography } from "ui"
+
 import APP_ROUTES from "@/constants/routes"
-import TagList from "@/molecules/tag/tag-list"
+import TagListMeta from "@/molecules/tag/tag-list-meta"
 import PostMeta from "@/molecules/user/posts/post-meta"
-import { TPostItem } from "@/types/posts"
 import { generatePath } from "@/utils/generatePath"
-import Comments from "./comments"
+
 import EditPostButton from "./edit-post-button"
 import PostContent from "./post-content"
 
@@ -16,9 +18,12 @@ export type PostDetailProps = {
 export default function PostDetail({ post }: PostDetailProps) {
   return (
     <div className="w-full">
-      <article className="mb-8 w-full rounded bg-white p-8">
-        <div className="flex">
-          <h1 className="flex flex-1 text-4xl font-extrabold text-slate-700">
+      <article className="mb-8 w-full rounded-md border p-8">
+        <div className="flex w-full">
+          <Typography
+            variant="h1"
+            className="flex flex-1"
+          >
             <Link
               href={generatePath(APP_ROUTES.POST, {
                 postId: post?.slug || post?.id,
@@ -26,14 +31,18 @@ export default function PostDetail({ post }: PostDetailProps) {
             >
               {post?.title}
             </Link>
-          </h1>
+          </Typography>
           <EditPostButton post={post} />
         </div>
 
         <PostMeta post={post} />
 
-        <TagList
-          tags={post?.tagOnPost}
+        <TagListMeta
+          tags={post?.tagOnPost?.map((tag) => ({
+            id: tag.tag.id,
+            slug: tag.tag.slug,
+            name: tag.tag.name,
+          }))}
           classes={{
             container: "mt-4",
           }}
@@ -41,7 +50,6 @@ export default function PostDetail({ post }: PostDetailProps) {
 
         <PostContent post={post} />
       </article>
-      <Comments />
     </div>
   )
 }
