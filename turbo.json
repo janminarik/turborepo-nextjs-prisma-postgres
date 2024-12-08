@@ -1,6 +1,6 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": ["**/.env.*local", "**/.env"],
   "globalEnv": [
     "NEXT_PUBLIC_FRONTEND_URL",
     "NEXTAUTH_SECRET",
@@ -15,11 +15,11 @@
   "tasks": {
     "build": {
       "dependsOn": ["^db:generate", "^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": []
     },
-    "lint": {},
     "dev": {
-      "dependsOn": ["^db:generate"],
+      "dependsOn": ["^db:generate", "^build"],
       "cache": false,
       "persistent": true
     },

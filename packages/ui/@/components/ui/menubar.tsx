@@ -7,9 +7,9 @@ import { Check, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "../../lib/utils"
 
-const MenubarMenu = MenubarPrimitive.Menu
+const MenubarMenu: typeof MenubarPrimitive.Menu = MenubarPrimitive.Menu
 
-const MenubarGroup = MenubarPrimitive.Group
+const MenubarGroup: typeof MenubarPrimitive.Group = MenubarPrimitive.Group
 
 const MenubarPortal = MenubarPrimitive.Portal
 
