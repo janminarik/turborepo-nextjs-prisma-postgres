@@ -8,7 +8,7 @@ export const metadata = {
 }
 
 export default async function Page(props: { params: Promise<{ authorId: string }> }) {
-  const params = await props.params;
+  const params = await props.params
   const author = await getUserById(params?.authorId as string)
 
   return (

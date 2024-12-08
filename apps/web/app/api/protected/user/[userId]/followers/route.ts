@@ -5,7 +5,7 @@ import { auth } from "configs/auth"
 import prisma from "database"
 
 export async function GET(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
-  const params = await props.params;
+  const params = await props.params
   const { userId } = params
 
   try {
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest, props: { params: Promise<{ userI
 }
 
 export async function POST(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
-  const params = await props.params;
+  const params = await props.params
   const { userId } = params
   const data = await request.json()
 

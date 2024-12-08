@@ -8,7 +8,7 @@ import SearchBar from "@/molecules/nav/search-bar"
 import PostList from "@/molecules/posts/post-list"
 
 export async function generateMetadata(props): Promise<Metadata> {
-  const searchParams = await props.searchParams;
+  const searchParams = await props.searchParams
   return {
     title: `${searchParams?.search} - Search results`,
     description: `Search results for "${searchParams?.search}"`,
@@ -16,7 +16,7 @@ export async function generateMetadata(props): Promise<Metadata> {
 }
 
 export default async function Page(props) {
-  const searchParams = await props.searchParams;
+  const searchParams = await props.searchParams
   const t = await getTranslations({
     namespace: "common",
   })

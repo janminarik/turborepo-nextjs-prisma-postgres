@@ -14,7 +14,7 @@ import { auth } from "configs/auth"
 import { getPost, PostStatus } from "database"
 
 export async function generateMetadata(props): Promise<Metadata> {
-  const params = await props.params;
+  const params = await props.params
   const post = await getPost({ postIdOrSlug: params?.postId })
 
   return {
@@ -23,14 +23,12 @@ export async function generateMetadata(props): Promise<Metadata> {
   }
 }
 
-export default async function Page(
-  props: {
-    params: Promise<{ postId: string }>
-    searchParams: Promise<TSearchParams>
-  }
-) {
-  const searchParams = await props.searchParams;
-  const params = await props.params;
+export default async function Page(props: {
+  params: Promise<{ postId: string }>
+  searchParams: Promise<TSearchParams>
+}) {
+  const searchParams = await props.searchParams
+  const params = await props.params
   const post = await getPost({ postIdOrSlug: params?.postId })
   const session = await auth()
 

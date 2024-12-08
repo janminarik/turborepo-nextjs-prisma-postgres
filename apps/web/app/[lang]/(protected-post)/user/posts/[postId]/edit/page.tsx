@@ -5,7 +5,7 @@ import { getPost } from "database"
 import PostForm from "@/molecules/post-form"
 
 export async function generateMetadata(props): Promise<Metadata> {
-  const params = await props.params;
+  const params = await props.params
   const post = await getPost({ postIdOrSlug: params?.postId as string })
 
   return {
@@ -15,7 +15,7 @@ export async function generateMetadata(props): Promise<Metadata> {
 }
 
 export default async function Page(props: { params: Promise<{ postId: string }> }) {
-  const params = await props.params;
+  const params = await props.params
   const post = await getPost({ postIdOrSlug: params?.postId as string })
 
   return <PostForm post={post?.data} />

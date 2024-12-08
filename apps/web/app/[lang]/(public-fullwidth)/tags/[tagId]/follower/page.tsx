@@ -7,7 +7,7 @@ export const metadata = {
 }
 
 export default async function Page(props: { params: Promise<{ tagId: string }> }) {
-  const params = await props.params;
+  const params = await props.params
   const tag = await getTagById(params?.tagId as string)
 
   return (
