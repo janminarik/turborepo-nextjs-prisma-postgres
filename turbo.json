@@ -16,7 +16,7 @@
     "build": {
       "dependsOn": ["^db:generate", "^build"],
       "outputs": [".next/**", "!.next/cache/**"],
-      "dotEnv": [".env"]
+      "dotEnv": [".env", ".env.local"]
     },
     "lint": {},
     "dev": {
