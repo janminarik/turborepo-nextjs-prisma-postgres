@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -47,8 +47,8 @@
     "lowlight": "^3.1.0",
     "lucide-react": "^0.427.0",
     "negotiator": "^0.6.3",
-    "next": "14.2.0-canary.50",
-    "next-auth": "5.0.0-beta.20",
+    "next": "15.0.4",
+    "next-auth": "5.0.0-beta.25",
     "next-intl": "^3.10.0",
     "next-themes": "^0.2.1",
     "nodemailer": "^6.9.15",
@@ -56,10 +56,10 @@
     "postcss": "^8.4.28",
     "prismjs": "^1.29.0",
     "qs": "^6.11.2",
-    "react": "^18.2.0",
+    "react": "19.0.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
-    "react-dom": "^18.2.0",
+    "react-dom": "19.0.0",
     "react-dropzone": "^14.2.3",
     "react-editor-js": "^2.1.0",
     "react-email": "^3.0.1",
@@ -88,8 +88,8 @@
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^17.0.12",
-    "@types/react": "^18.0.22",
-    "@types/react-dom": "^18.0.7",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.1",
     "database": "workspace:^",
     "eslint-config-custom": "workspace:*",
     "postcss-import": "^15.1.0",
@@ -97,5 +97,11 @@
     "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*",
     "typescript": "^5.1.6"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "19.0.1",
+      "@types/react-dom": "19.0.1"
+    }
   }
 }

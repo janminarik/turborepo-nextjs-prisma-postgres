@@ -4,7 +4,8 @@ import prisma, { Prisma } from "database"
 
 import { commentSelect } from "@/types/comment"
 
-export async function GET(request: NextRequest, { params }: { params: { postIdOrSlug: string } }) {
+export async function GET(request: NextRequest, props: { params: Promise<{ postIdOrSlug: string }> }) {
+  const params = await props.params;
   const newUrl = request.nextUrl.clone()
   const searchTerm = newUrl.searchParams.get("query") || ""
   const limit = newUrl.searchParams.get("limit") || 10

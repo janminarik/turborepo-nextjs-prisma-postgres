@@ -7,7 +7,8 @@ export const metadata = {
   description: "A list of posts by the author",
 }
 
-export default async function Page({ params }: { params: { authorId: string } }) {
+export default async function Page(props: { params: Promise<{ authorId: string }> }) {
+  const params = await props.params;
   const author = await getUserById(params?.authorId as string)
 
   return (

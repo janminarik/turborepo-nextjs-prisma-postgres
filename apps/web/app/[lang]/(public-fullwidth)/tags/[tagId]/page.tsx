@@ -3,7 +3,8 @@ import { getTag } from "database"
 import PostList from "@/molecules/posts/post-list"
 import TagDetail from "@/molecules/tag/tag-detail"
 
-export const generateMetadata = async ({ params }) => {
+export const generateMetadata = async props => {
+  const params = await props.params;
   const { data: tag, error } = await getTag({
     tagIdOrSlug: params?.tagId,
   })
@@ -14,7 +15,8 @@ export const generateMetadata = async ({ params }) => {
   }
 }
 
-export default async function Page({ searchParams, params }) {
+export default async function Page(props) {
+  const params = await props.params;
   return (
     <div className="grid grid-cols-12 gap-10">
       <TagDetail tagIdOrSlug={params?.tagId} />

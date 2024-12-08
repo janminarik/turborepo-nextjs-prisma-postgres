@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { auth } from "configs/auth"
 import { locales } from "i18n"
 import createIntlMiddleware from "next-intl/middleware"
+import { NextAuthRequest } from "next-auth/lib"
 
 const handleI18nRouting = createIntlMiddleware({
   locales,
