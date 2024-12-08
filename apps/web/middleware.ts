@@ -5,6 +5,7 @@ import { locales } from "i18n"
 import { NextAuthRequest } from "next-auth/lib"
 import createIntlMiddleware from "next-intl/middleware"
 
+
 const handleI18nRouting = createIntlMiddleware({
   locales,
   localePrefix: "as-needed",
