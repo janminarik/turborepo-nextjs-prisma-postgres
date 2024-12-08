@@ -33,7 +33,7 @@ const sendEmailViaSMTP = async ({
     to: email,
     subject,
     text,
-    html: render(react as ReactElement),
+    html: render(react as ReactElement<any>),
   })
 
   console.info("Email sent: %s", info.messageId)

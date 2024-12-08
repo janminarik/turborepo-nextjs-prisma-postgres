@@ -8,7 +8,7 @@ import { buttonVariants, cn, Typography } from "ui"
 export type SidebarItemProps = {
   label: string
   link: string
-  icons: React.ReactElement
+  icons: React.ReactElement<any>
 }
 
 export default function SidebarItem({ label, link, icons }: SidebarItemProps) {

@@ -4,7 +4,8 @@ import prisma from "database"
 
 import { userSelect } from "@/types/users"
 
-export async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
+export async function GET(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
+  const params = await props.params
   if (!params.userId) {
     return Response.json({
       status: 400,
@@ -39,7 +40,8 @@ export async function GET(request: NextRequest, { params }: { params: { userId: 
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { userId: string } }) {
+export async function PUT(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
+  const params = await props.params
   const data = await request.json()
   try {
     const user = await prisma.user.update({

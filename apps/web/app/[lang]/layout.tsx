@@ -1,3 +1,5 @@
+import { use } from "react"
+
 import "./globals.css"
 import "ui/dist/index.css"
 import "react-toastify/dist/ReactToastify.css"
@@ -15,13 +17,16 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({
-  params: { lang },
-  children,
-}: {
-  params: { lang: string }
+export default function RootLayout(props: {
+  params: Promise<{ lang: string }>
   children: React.ReactNode
 }) {
+  const params = use(props.params)
+
+  const { lang } = params
+
+  const { children } = props
+
   const messages = useMessages()
 
   return (

@@ -2,7 +2,11 @@ import { NextRequest } from "next/server"
 
 import { postSelect } from "@/types/posts"
 
-export async function GET(request: NextRequest, { params }: { params: { postIdOrSlug: string } }) {
+export async function GET(
+  request: NextRequest,
+  props: { params: Promise<{ postIdOrSlug: string }> }
+) {
+  const params = await props.params
   try {
     const post = await prisma.post.findUnique({
       where: {

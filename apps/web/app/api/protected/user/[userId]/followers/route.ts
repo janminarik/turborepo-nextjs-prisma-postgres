@@ -4,7 +4,8 @@ import { NextRequest } from "next/server"
 import { auth } from "configs/auth"
 import prisma from "database"
 
-export async function GET(request: NextRequest, { params }: { params: { userId: string } }) {
+export async function GET(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
+  const params = await props.params
   const { userId } = params
 
   try {
@@ -28,7 +29,8 @@ export async function GET(request: NextRequest, { params }: { params: { userId: 
   }
 }
 
-export async function POST(request: NextRequest, { params }: { params: { userId: string } }) {
+export async function POST(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
+  const params = await props.params
   const { userId } = params
   const data = await request.json()
 
