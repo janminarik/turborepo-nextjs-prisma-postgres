@@ -1,9 +1,8 @@
 "use client"
 
+import { onSignOut } from "actions/auth"
 import { useTranslations } from "next-intl"
 import { DropdownMenuItem, DropdownMenuShortcut } from "ui"
-
-import { onSignOut } from "actions/auth"
 
 export const LogoutMenu = () => {
   const t = useTranslations()

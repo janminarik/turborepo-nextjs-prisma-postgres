@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 
 import { auth } from "configs/auth"
+import APP_ROUTES from "constants/routes"
 import { PostStatus } from "database"
 import { updatePostStatus } from "database/src/posts/queries"
 import { LucideEdit } from "lucide-react"
@@ -9,7 +10,6 @@ import { getTranslations } from "next-intl/server"
 import { Button, buttonVariants, cn, toast } from "ui"
 
 import { onTogglePost } from "@/actions/protect/postAction"
-import APP_ROUTES from "constants/routes"
 import { TPostItem } from "@/types/posts"
 
 import TogglePost from "./toggle-post"

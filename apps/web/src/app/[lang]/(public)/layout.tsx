@@ -1,9 +1,8 @@
 import { BookCopy, HomeIcon, Smartphone, TagIcon } from "lucide-react"
-import { useTranslations } from "next-intl"
-
 import SidebarItem, { SidebarItemProps } from "molecules/sidebar-item"
 import SquareAdvertisement from "molecules/square-advertisement"
 import TopTag from "molecules/top-tags"
+import { useTranslations } from "next-intl"
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   const t = useTranslations("common")

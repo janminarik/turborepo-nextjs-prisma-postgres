@@ -5,7 +5,6 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 import { FilterValues, PeriodValues } from "database"
 import { cn } from "ui"
-
 import { capitalizeFirstLetter } from "utils/text"
 
 import { FilterItem } from "./filter-item"

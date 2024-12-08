@@ -3,6 +3,8 @@
 import React, { useState } from "react"
 import Link from "next/link"
 
+import APP_APIS from "constants/apis"
+import APP_ROUTES from "constants/routes"
 import { useSession } from "next-auth/react"
 import { toast } from "react-toastify"
 import {
@@ -15,11 +17,9 @@ import {
   Textarea,
   Typography,
 } from "ui"
-
-import APP_APIS from "constants/apis"
-import APP_ROUTES from "constants/routes"
-import { TCommentItem } from "@/types/comment"
 import { generatePath } from "utils/generatePath"
+
+import { TCommentItem } from "@/types/comment"
 
 interface CommentInputProps {
   postId: string

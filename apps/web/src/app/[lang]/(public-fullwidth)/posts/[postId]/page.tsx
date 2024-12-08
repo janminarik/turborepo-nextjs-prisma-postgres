@@ -6,6 +6,7 @@ import Comments from "molecules/posts/post-detail/comments"
 import LikeButton from "molecules/posts/post-detail/like-button"
 import TableOfContents from "molecules/posts/post-detail/table-of-contents"
 import BookmarkButton from "molecules/posts/post-item/bookmark-button"
+
 import { TSearchParams } from "@/types"
 
 import "./tocbot.css"

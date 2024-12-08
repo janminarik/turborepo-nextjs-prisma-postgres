@@ -1,10 +1,9 @@
 import React from "react"
 import Link from "next/link"
 
+import APP_ROUTES from "constants/routes"
 import { TTagItem } from "database"
 import { Badge } from "ui"
-
-import APP_ROUTES from "constants/routes"
 import { generatePath } from "utils/generatePath"
 
 interface TagBadgeProps {

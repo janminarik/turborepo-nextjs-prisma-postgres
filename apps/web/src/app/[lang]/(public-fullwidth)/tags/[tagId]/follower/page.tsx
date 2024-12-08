@@ -1,5 +1,6 @@
-import { getTagById } from "@/actions/public/tags"
 import TagDetail from "molecules/tag/tag-detail"
+
+import { getTagById } from "@/actions/public/tags"
 
 export const metadata = {
   title: "Tags",

@@ -3,8 +3,9 @@ import { Metadata } from "next"
 import APP_APIS from "constants/apis"
 import Followers from "molecules/follower/followers"
 import UserProfile from "molecules/follower/user-profile"
-import { TUserItem } from "@/types/users"
 import { generatePath } from "utils/generatePath"
+
+import { TUserItem } from "@/types/users"
 
 export async function generateMetadata(props: {
   params: Promise<{ authorId: string }>

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 import { auth } from "configs/auth"
+import APP_ROUTES from "constants/routes"
 import prisma, {
   createPost,
   PostOnUserType,
@@ -15,7 +16,6 @@ import prisma, {
 } from "database"
 import { toast } from "react-toastify"
 
-import APP_ROUTES from "constants/routes"
 import { TUserItem, userSelect } from "@/types/users"
 
 // TODO: move to database package

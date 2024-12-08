@@ -1,10 +1,9 @@
 import React from "react"
 import Link from "next/link"
 
+import APP_ROUTES from "constants/routes"
 import { TPostItem } from "database"
 import dayjs from "dayjs"
-
-import APP_ROUTES from "constants/routes"
 import { generatePath } from "utils/generatePath"
 
 type PostMetaProps = {

@@ -1,11 +1,11 @@
 import { useState } from "react"
 
+import APP_APIS from "constants/apis"
 import { getSession } from "next-auth/react"
 import { toast } from "react-toastify"
-
-import APP_APIS from "constants/apis"
-import { TPostItem } from "@/types/posts"
 import { generatePath } from "utils/generatePath"
+
+import { TPostItem } from "@/types/posts"
 
 type UseLikeProps = {
   post: TPostItem

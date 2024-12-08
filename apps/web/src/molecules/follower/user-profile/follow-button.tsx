@@ -3,11 +3,10 @@
 import React from "react"
 import Link from "next/link"
 
+import useFollowUser from "hooks/useFollowUser"
 import { useSession } from "next-auth/react"
 import { useTranslations } from "next-intl"
 import { Button, buttonVariants, cn } from "ui"
-
-import useFollowUser from "hooks/useFollowUser"
 
 const FollowButton: React.FC<{ authorId: string }> = ({ authorId }: { authorId: string }) => {
   const t = useTranslations()

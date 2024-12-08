@@ -2,9 +2,8 @@ import React from "react"
 import { redirect } from "next/navigation"
 
 import { auth } from "configs/auth"
-import { getTranslations } from "next-intl/server"
-
 import SignIn from "molecules/auth/sign-in"
+import { getTranslations } from "next-intl/server"
 
 export async function generateMetadata() {
   const t = await getTranslations()

@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation"
 
 import { auth } from "configs/auth"
-
 import APP_ROUTES from "constants/routes"
 import PostForm from "molecules/post-form"
 

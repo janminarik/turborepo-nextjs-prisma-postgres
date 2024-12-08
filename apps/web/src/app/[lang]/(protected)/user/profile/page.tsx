@@ -1,5 +1,4 @@
 import { auth } from "configs/auth"
-
 import APP_APIS from "constants/apis"
 import PageTitle from "molecules/page-title"
 import Profile from "molecules/profile"

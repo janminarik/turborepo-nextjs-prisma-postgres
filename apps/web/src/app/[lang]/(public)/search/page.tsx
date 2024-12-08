@@ -1,11 +1,10 @@
 import { Metadata } from "next"
 
-import { getTranslations } from "next-intl/server"
-import { Typography } from "ui"
-
 import Filter from "molecules/home/filter"
 import SearchBar from "molecules/nav/search-bar"
 import PostList from "molecules/posts/post-list"
+import { getTranslations } from "next-intl/server"
+import { Typography } from "ui"
 
 export async function generateMetadata(props): Promise<Metadata> {
   const searchParams = await props.searchParams

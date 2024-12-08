@@ -1,10 +1,9 @@
 import { Metadata } from "next"
 
 import { LucideHeart } from "lucide-react"
-import { Button, Input, Typography } from "ui"
-
 import PageTitle from "molecules/page-title"
 import TagBadge from "molecules/tag/tag-badge"
+import { Button, Input, Typography } from "ui"
 
 export const metadata: Metadata = {
   title: "Next-forum - Page UI",

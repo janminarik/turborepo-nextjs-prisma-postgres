@@ -4,9 +4,8 @@ import React, { useCallback, useState } from "react"
 import { useParams } from "next/navigation"
 
 import { getPosts, TGetPostsRequest, TPostItem } from "database"
-import { cn } from "ui"
-
 import InfiniteScroll from "molecules/infinite-scroll"
+import { cn } from "ui"
 
 import PostItem from "../post-item"
 

@@ -1,5 +1,4 @@
 import { getTag } from "database"
-
 import PostList from "molecules/posts/post-list"
 import TagDetail from "molecules/tag/tag-detail"
 

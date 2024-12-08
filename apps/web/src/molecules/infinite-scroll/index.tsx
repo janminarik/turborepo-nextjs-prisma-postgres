@@ -1,8 +1,7 @@
 "use client"
 
-import { Loader } from "lucide-react"
-
 import useInfiniteScroll from "hooks/useInfinityScroll"
+import { Loader } from "lucide-react"
 
 interface InfiniteScrollProps {
   containerClassName?: string

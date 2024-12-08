@@ -1,5 +1,4 @@
 import { getUser } from "database"
-
 import UserProfile from "molecules/follower/user-profile"
 import PostList from "molecules/posts/post-list"
 

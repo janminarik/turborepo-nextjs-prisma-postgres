@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 
-import { toast } from "react-toastify"
-
 import APP_APIS from "constants/apis"
+import { toast } from "react-toastify"
 import { generatePath } from "utils/generatePath"
 
 const useFollowUser = () => {

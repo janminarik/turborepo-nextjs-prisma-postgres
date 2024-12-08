@@ -3,7 +3,6 @@ import { Metadata } from "next/types"
 
 import { auth } from "configs/auth"
 import { getUser } from "database"
-
 import PageTitle from "molecules/page-title"
 
 export async function generateMetadata(): Promise<Metadata> {

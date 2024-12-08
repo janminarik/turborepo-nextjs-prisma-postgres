@@ -17,11 +17,11 @@ import {
   Input,
   Typography,
 } from "ui"
+import { redirect } from "utils/navigation"
 import { z } from "zod"
 
 import { signUp } from "@/actions/auth"
 import { SignUpDataInput, signUpSchema } from "@/actions/auth/type"
-import { redirect } from "utils/navigation"
 
 import AuthForm from "../auth-form"
 

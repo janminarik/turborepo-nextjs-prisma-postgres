@@ -3,10 +3,9 @@
 import React from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
+import { ORDER_BY } from "constants/order"
 import { useTranslations } from "next-intl"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "ui"
-
-import { ORDER_BY } from "constants/order"
 
 interface FilterProps {
   total: number

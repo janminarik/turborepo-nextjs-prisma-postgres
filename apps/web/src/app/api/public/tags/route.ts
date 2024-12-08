@@ -1,8 +1,7 @@
+import { DEFAULT_TAG_PAGE_LIMIT } from "constants"
 import { NextRequest } from "next/server"
 
 import prisma, { Prisma, tagListSelect } from "database"
-
-import { DEFAULT_TAG_PAGE_LIMIT } from "constants"
 
 export async function GET(request: NextRequest) {
   const newUrl = request.nextUrl.clone()

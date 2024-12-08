@@ -1,10 +1,9 @@
 import { ReactElement } from "react"
 
 import { render } from "@react-email/components"
+import { resend } from "libs/resend"
 import nodemailer from "nodemailer"
 import { CreateEmailOptions } from "resend"
-
-import { resend } from "libs/resend"
 
 // Send email using SMTP (Recommended for local development)
 const sendEmailViaSMTP = async ({

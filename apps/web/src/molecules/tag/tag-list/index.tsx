@@ -4,7 +4,6 @@ import React, { useCallback, useState } from "react"
 import { useParams } from "next/navigation"
 
 import { getTags, TTagItem } from "database"
-
 import InfiniteScroll from "molecules/infinite-scroll"
 
 import TagItem from "../tag-item"
