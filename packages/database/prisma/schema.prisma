@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
@@ -8,7 +5,237 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:example@localhost:5432/codeforstartup" //env("DATABASE_URL")
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id           String       @id @default(cuid())
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  title        String       @db.VarChar(255)
+  content      String?
+  slug         String       @unique @db.VarChar(255)
+  authorId     String
+  parentPostId String?
+  pinned       Boolean      @default(false)
+  userPinned   Boolean      @default(false)
+  postType     PostType     @default(POST)
+  postStatus   PostStatus   @default(DRAFT)
+  postFormat   PostFormat   @default(STANDARD)
+  totalComment Int          @default(0)
+  totalFollow  Int          @default(0)
+  totalLike    Int          @default(0)
+  totalShare   Int          @default(0)
+  totalView    Int          @default(0)
+  imageId      String?
+  comments     Comment[]
+  parentOf     ParentPost[] @relation("parentPost")
+  parent       ParentPost[] @relation("post")
+  author       User         @relation(fields: [authorId], references: [id])
+  image        Image?       @relation(fields: [imageId], references: [id])
+  postOnUser   PostOnUser[]
+  tagOnPost    TagOnPost[]
+}
+
+model ParentPost {
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  parentPostId String
+  postId       String
+  parentPost   Post     @relation("parentPost", fields: [parentPostId], references: [id])
+  post         Post     @relation("post", fields: [postId], references: [id])
+
+  @@id([parentPostId, postId])
+}
+
+model PostOnUser {
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  userId    String
+  postId    String
+  type      PostOnUserType @default(LIKE)
+  post      Post           @relation(fields: [postId], references: [id])
+  user      User           @relation(fields: [userId], references: [id])
+
+  @@id([userId, postId, type])
+}
+
+model PostContentType {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String   @unique @db.VarChar(255)
+  slug        String   @unique @db.VarChar(255)
+  description String?
+}
+
+model PostMetaData {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   @db.VarChar(255)
+  content   String?
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+}
+
+model User {
+  id             String          @id @default(cuid())
+  name           String?
+  email          String?         @unique
+  emailVerified  DateTime?
+  image          String?
+  userType       UserType        @default(AUTHOR)
+  username       String?         @unique
+  bio            String?
+  website        String?
+  address        String?
+  phone          String?
+  twitter        String?
+  facebook       String?
+  github         String?
+  youtube        String?
+  linkedin       String?
+  instagram      String?
+  totalFollower  Int             @default(0)
+  totalFollowing Int             @default(0)
+  totalPost      Int             @default(0)
+  totalView      Int             @default(0)
+  password       String?
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  accounts       Account[]
+  comment        Comment[]
+  commentOnUser  CommentOnUser[]
+  followers      Follower[]      @relation("follower")
+  followings     Follower[]      @relation("following")
+  images         Image[]
+  post           Post[]
+  postMetaData   PostMetaData[]
+  postOnUser     PostOnUser[]
+  sessions       Session[]
+}
+
+model Follower {
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  followerId  String
+  followingId String
+  follower    User     @relation("follower", fields: [followerId], references: [id])
+  following   User     @relation("following", fields: [followingId], references: [id])
+
+  @@id([followerId, followingId])
+}
+
+model TagOnPost {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  postId    String
+  tagId     String
+  post      Post     @relation(fields: [postId], references: [id])
+  tag       Tags     @relation(fields: [tagId], references: [id])
+
+  @@id([postId, tagId])
+}
+
+model Tags {
+  id             String      @id @default(cuid())
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  type           TagType     @default(TAG)
+  name           String      @unique @db.VarChar(255)
+  slug           String      @unique @db.VarChar(255)
+  description    String?
+  parent         String?     @db.VarChar(255)
+  count          Int         @default(0)
+  totalFollowers Int         @default(0)
+  totalLike      Int         @default(0)
+  totalPost      Int         @default(0)
+  totalView      Int         @default(0)
+  imageId        String?
+  tagOnPost      TagOnPost[]
+  image          Image?      @relation(fields: [imageId], references: [id])
+}
+
+model Comment {
+  id              String          @id @default(cuid())
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  content         String?
+  authorId        String
+  parentCommentId String?
+  pinned          Boolean         @default(false)
+  commentOnPostId String
+  author          User            @relation(fields: [authorId], references: [id])
+  commentOnPost   Post            @relation(fields: [commentOnPostId], references: [id])
+  commentOnUser   CommentOnUser[]
+}
+
+model CommentOnUser {
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  userId    String
+  commentId String
+  type      CommentOnUserType @default(LIKE)
+  comment   Comment           @relation(fields: [commentId], references: [id])
+  user      User              @relation(fields: [userId], references: [id])
+
+  @@id([userId, commentId])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Image {
+  id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  path       String
+  name       String
+  hash       String
+  ext        String
+  width      Int
+  height     Int
+  format     String
+  previewUrl String?
+  caption    String?
+  url        String
+  mime       String
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  posts      Post[]
+  tags       Tags[]
 }
 
 enum UserType {
@@ -52,53 +279,6 @@ enum PostStatus {
   PUBLISHED
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  title   String  @db.VarChar(255)
-  content String?
-  slug    String  @unique @db.VarChar(255)
-
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String
-
-  totalView    Int @default(0)
-  totalLike    Int @default(0)
-  totalShare   Int @default(0)
-  totalComment Int @default(0)
-  totalFollow  Int @default(0)
-
-  parentPostId String?
-  pinned       Boolean @default(false)
-  userPinned   Boolean @default(false)
-
-  postType   PostType     @default(POST)
-  postStatus PostStatus   @default(DRAFT)
-  postFormat PostFormat   @default(STANDARD)
-  tagOnPost  TagOnPost[]
-  postOnUser PostOnUser[]
-  comments   Comment[]
-  parentOf   ParentPost[] @relation("parentPost")
-  parent     ParentPost[] @relation("post")
-  image      Image?       @relation(fields: [imageId], references: [id])
-  imageId    String?
-}
-
-model ParentPost {
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  parentPostId String
-  parentPost   Post   @relation("parentPost", fields: [parentPostId], references: [id])
-
-  postId String
-  post   Post   @relation("post", fields: [postId], references: [id])
-
-  @@id([parentPostId, postId])
-}
-
 enum PostOnUserType {
   LIKE
   FAVORITE
@@ -107,230 +287,10 @@ enum PostOnUserType {
   PINNED
 }
 
-model PostOnUser {
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
-  postId String
-  post   Post   @relation(fields: [postId], references: [id])
-
-  type PostOnUserType @default(LIKE)
-
-  @@id([userId, postId, type])
-}
-
-model PostContentType {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  name        String  @unique @db.VarChar(255)
-  slug        String  @unique @db.VarChar(255)
-  description String?
-}
-
-model PostMetaData {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  title   String  @db.VarChar(255)
-  content String?
-
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String
-}
-
-model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  password      String?
-
-  userType UserType @default(AUTHOR)
-
-  username       String? @unique
-  bio            String?
-  website        String?
-  address        String?
-  phone          String?
-  twitter        String?
-  facebook       String?
-  github         String?
-  youtube        String?
-  linkedin       String?
-  instagram      String?
-  totalPost      Int     @default(0)
-  totalView      Int     @default(0)
-  totalFollower  Int     @default(0)
-  totalFollowing Int     @default(0)
-
-  accounts Account[]
-  sessions Session[]
-
-  post          Post[]
-  postMetaData  PostMetaData[]
-  postOnUser    PostOnUser[]
-  followers     Follower[]      @relation("follower")
-  followings    Follower[]      @relation("following")
-  comment       Comment[]
-  commentOnUser CommentOnUser[]
-  images        Image[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Follower {
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  followerId String
-  follower   User   @relation("follower", fields: [followerId], references: [id])
-
-  followingId String
-  following   User   @relation("following", fields: [followingId], references: [id])
-
-  @@id([followerId, followingId])
-}
-
-model TagOnPost {
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  postId String
-  post   Post   @relation(fields: [postId], references: [id])
-
-  tagId String
-  tag   Tags   @relation(fields: [tagId], references: [id])
-
-  @@id([postId, tagId])
-}
-
-model Tags {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  type TagType @default(TAG)
-
-  totalPost      Int @default(0)
-  totalView      Int @default(0)
-  totalLike      Int @default(0)
-  totalFollowers Int @default(0)
-
-  name        String  @unique @db.VarChar(255)
-  slug        String  @unique @db.VarChar(255)
-  description String?
-  parent      String? @db.VarChar(255)
-  count       Int     @default(0)
-
-  tagOnPost TagOnPost[]
-  image     Image?      @relation(fields: [imageId], references: [id])
-  imageId   String?
-}
-
-model Comment {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  content String?
-
-  author   User   @relation(fields: [authorId], references: [id])
-  authorId String
-
-  parentCommentId String?
-  pinned          Boolean @default(false)
-
-  commentOnPostId String
-  commentOnPost   Post            @relation(fields: [commentOnPostId], references: [id])
-  commentOnUser   CommentOnUser[]
-}
-
 enum CommentOnUserType {
   LIKE
   FAVORITE
   FOLLOW
   BOOKMARK
   PINNED
-}
-
-model CommentOnUser {
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
-  commentId String
-  comment   Comment @relation(fields: [commentId], references: [id])
-
-  type CommentOnUserType @default(LIKE)
-
-  @@id([userId, commentId])
-}
-
-model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String? @db.Text
-  session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-}
-
-model Image {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  path       String
-  name       String
-  hash       String
-  ext        String
-  width      Int
-  height     Int
-  format     String
-  previewUrl String?
-  caption    String?
-  url        String
-  mime       String
-
-  user   User   @relation(fields: [userId], references: [id])
-  userId String
-
-  posts Post[]
-  tags  Tags[]
 }
