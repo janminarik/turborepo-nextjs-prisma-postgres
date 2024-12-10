@@ -59,32 +59,32 @@ turbo dev
 
 # Folder structure
 
-├── src
-│   ├── actions
-│   ├── app
-│   ├── configs
-│   ├── constants
-│   ├── emails
-│   ├── font
-│   ├── hooks
-│   ├── i18n.ts
-│   ├── libs
-│   ├── messages
-│   ├── middleware.ts
-│   ├── molecules
-│   ├── providers
-│   ├── types
-│   └── utils
-└── types
-    └── next-auth.d.ts
-├── package.json
-├── postcss.config.js
-├── tailwind.config.js
-├── tsconfig.json
-├── components.json
-├── env.example
-├── next-env.d.ts
-├── next.config.mjs
+├── src  
+│   ├── actions  
+│   ├── app  
+│   ├── configs  
+│   ├── constants  
+│   ├── emails  
+│   ├── font  
+│   ├── hooks  
+│   ├── i18n.ts  
+│   ├── libs  
+│   ├── messages  
+│   ├── middleware.ts  
+│   ├── molecules  
+│   ├── providers  
+│   ├── types  
+│   └── utils  
+└── types  
+    └── next-auth.d.ts  
+├── package.json  
+├── postcss.config.js  
+├── tailwind.config.js  
+├── tsconfig.json  
+├── components.json  
+├── env.example  
+├── next-env.d.ts  
+├── next.config.mjs  
 
 ## Front side functions
 
