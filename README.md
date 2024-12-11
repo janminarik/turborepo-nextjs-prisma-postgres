@@ -59,24 +59,23 @@ turbo dev
 
 # Folder structure
 
-├── src  
-│   ├── actions  
-│   ├── app  
-│   ├── configs  
-│   ├── constants  
-│   ├── emails  
-│   ├── font  
-│   ├── hooks  
-│   ├── i18n.ts  
-│   ├── libs  
-│   ├── messages  
-│   ├── middleware.ts  
-│   ├── molecules  
-│   ├── providers  
-│   ├── types  
-│   └── utils  
+│─── src  
+│────── actions  
+│────── app  
+│────── configs  
+│────── constants  
+│────── emails  
+│────── font  
+│────── hooks  
+│────── i18n.ts  
+│────── libs  
+│────── messages  
+│────── middleware.ts  
+│────── molecules  
+│────── providers  
+│────── types  
 └── types  
-    └── next-auth.d.ts  
+├────── next-auth.d.ts  
 ├── package.json  
 ├── postcss.config.js  
 ├── tailwind.config.js  
