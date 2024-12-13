@@ -15,11 +15,8 @@ import prisma, {
   updatePostStatus,
 } from "database"
 import { toast } from "react-toastify"
+import { TUserItem, userSelect } from "types/users"
 
-import { TUserItem, userSelect } from "@/types/users"
-
-// TODO: move to database package
-// Get total actions (like, bookmark) for a post
 export const getTotalActions = async ({
   postId,
   actionType,
@@ -171,7 +168,7 @@ export const getLikers = async ({ postId }: { postId: string }) => {
   }
 }
 
-export const onTogglePost = async ({ post }: { post: TPostItem }) => {
+export async function onTogglePost({ post }: { post: TPostItem }): Promise<{ post: TPostItem }> {
   try {
     await updatePostStatus(
       post.id,
@@ -183,6 +180,8 @@ export const onTogglePost = async ({ post }: { post: TPostItem }) => {
   } finally {
     revalidatePath(`/post/${post.slug}`)
   }
+
+  return { post: updatedPost }
 }
 
 export const handleCreateUpdatePost = async ({

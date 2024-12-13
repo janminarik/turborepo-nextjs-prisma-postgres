@@ -1,27 +1,29 @@
 "use client"
 
-// import { useRouter } from "next/navigation"
+import { onTogglePost } from "actions/protect/postAction"
 import { PostStatus, TPostItem, updatePost } from "database"
-import { updatePostStatus } from "database/src/posts/queries"
-import { useSession } from "next-auth/react"
 import { useTranslations } from "next-intl"
-import { toast } from "react-toastify"
+import { useFormState, useFormStatus } from "react-dom"
 import { Button } from "ui"
 
-import { onTogglePost } from "@/actions/protect/postAction"
-
-const TogglePost = ({ post }: { post: TPostItem }) => {
+export default function TogglePost({ post }: { post: TPostItem }) {
   const t = useTranslations()
 
+  const [state, formAction] = useFormState(onTogglePost, {
+    post,
+  })
+
+  console.log(state)
+
   return (
-    <Button
-      type="button"
-      variant={post.postStatus === PostStatus.DRAFT ? "destructive" : "default"}
-      onClick={() => onTogglePost({ post })}
-    >
-      {t(post.postStatus === PostStatus.DRAFT ? "common.turn_publish" : "common.turn_draft")}
-    </Button>
+    <form action={formAction}>
+      <Button
+        type="submit"
+        variant={post.postStatus === PostStatus.DRAFT ? "destructive" : "default"}
+        // disabled={state}
+      >
+        {t(post.postStatus === PostStatus.DRAFT ? "common.turn_publish" : "common.turn_draft")}
+      </Button>
+    </form>
   )
 }
-
-export default TogglePost

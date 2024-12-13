@@ -2,11 +2,9 @@
 
 import React from "react"
 
-import { PostOnUserType } from "database"
+import { addRelation, removeRelation } from "actions/protect/postAction"
+import { PostOnUserType, TPostItem } from "database"
 import { Button, cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "ui"
-
-import { addRelation, removeRelation } from "@/actions/protect/postAction"
-import { TPostItem } from "@/types/posts"
 
 interface BookmarkButtonProps {
   totalBookmark: number

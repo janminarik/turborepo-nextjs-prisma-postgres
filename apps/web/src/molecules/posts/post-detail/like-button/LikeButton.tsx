@@ -1,11 +1,10 @@
 "use client"
 
+import { addRelation, removeRelation } from "actions/protect/postAction"
 import { PostOnUserType, TPostItem } from "database"
 import { Heart } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Button, cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "ui"
-
-import { addRelation, removeRelation } from "@/actions/protect/postAction"
 
 type LikeButtonProps = {
   post: TPostItem
