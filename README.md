@@ -35,10 +35,10 @@ turbo dev
 
 # Libraries
 
-- ReactJS
+- ReactJS - 19.
 - TypeScript
-- NextJS 14 - App router and server actions
-- next-auth
+- NextJS 15. - App router and server actions
+- next-auth 5.
 - Prisma ORM
 - Postgres
 - Turborepo
