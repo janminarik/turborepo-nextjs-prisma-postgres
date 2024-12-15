@@ -59,7 +59,6 @@ turbo dev
 
 # Folder structure
 
-
 ## Front side functions
 
 - [x] Register by email or github
@@ -89,4 +88,3 @@ turbo dev
 - [ ] Manage roles and permission
 
 # DEV NOTES
-
