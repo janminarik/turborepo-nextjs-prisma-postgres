@@ -170,18 +170,18 @@ export const getLikers = async ({ postId }: { postId: string }) => {
 
 export async function onTogglePost({ post }: { post: TPostItem }): Promise<{ post: TPostItem }> {
   try {
-    await updatePostStatus(
+    const { data } = await updatePostStatus(
       post.id,
       post.postStatus === PostStatus.DRAFT ? PostStatus.PUBLISHED : PostStatus.DRAFT,
       post?.author?.id
     )
+
+    return { post: data }
   } catch (error) {
     toast.error(error)
   } finally {
     revalidatePath(`/post/${post.slug}`)
   }
-
-  return { post: updatedPost }
 }
 
 export const handleCreateUpdatePost = async ({
@@ -207,4 +207,21 @@ export const handleCreateUpdatePost = async ({
     revalidatePath(APP_ROUTES.POST.replace(":postId", newPostId))
     redirect(APP_ROUTES.POST.replace(":postId", newPostId))
   }
+}
+
+export const onToggleLikePost = async ({
+  postId,
+  postSlug,
+  isLiked,
+}: {
+  postId: string
+  postSlug: string
+  isLiked: boolean
+}) => {
+  ;(isLiked ? removeRelation : addRelation)({
+    postId,
+    postSlug,
+    action: PostOnUserType.LIKE,
+  })
+  return { postId, postSlug, isLiked: !isLiked }
 }
