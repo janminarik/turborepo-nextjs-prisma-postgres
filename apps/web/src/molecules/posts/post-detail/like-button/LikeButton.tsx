@@ -2,13 +2,9 @@
 
 import { useActionState } from "react"
 
-import {
-  addRelation,
-  onToggleLikePost,
-  onTogglePost,
-  removeRelation,
-} from "actions/protect/postAction"
-import { PostOnUserType, TPostItem } from "database"
+import { onToggleLikePostWithUser, ToggleLikePostSchemaType } from "actions/protect/postAction"
+import { TPostItem } from "database"
+import { ActionState } from "libs/validationAction"
 import { Heart } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Button, cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "ui"
@@ -23,22 +19,16 @@ type LikeButtonProps = {
 const LikeButton: React.FC<LikeButtonProps> = ({ children, post, isLiked }: LikeButtonProps) => {
   const t = useTranslations()
 
-  const [{ isLiked: likeStatus, postId, postSlug }, toggleLikePost, pending] = useActionState(
-    onToggleLikePost,
+  const [state, toggleLikePost, pending] = useActionState<ActionState, ToggleLikePostSchemaType>(
+    onToggleLikePostWithUser,
     {
       isLiked,
       postId: post.id,
       postSlug: post.slug,
+      error: "",
+      success: "",
     }
   )
-
-  // const toggleLike = () => {
-  //   ;(isLiked ? removeRelation : addRelation)({
-  //     postId: post.id,
-  //     postSlug: post.slug,
-  //     action: PostOnUserType.LIKE,
-  //   })
-  // }
 
   return (
     <div className="flex flex-col items-center">

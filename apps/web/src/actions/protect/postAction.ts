@@ -9,13 +9,16 @@ import prisma, {
   createPost,
   PostOnUserType,
   PostStatus,
+  Session,
   TCreatePostInput,
   TPostItem,
   updatePost,
   updatePostStatus,
 } from "database"
+import { ActionState, validatedActionWithUser } from "libs/validationAction"
 import { toast } from "react-toastify"
 import { TUserItem, userSelect } from "types/users"
+import * as z from "zod"
 
 export const getTotalActions = async ({
   postId,
@@ -138,8 +141,6 @@ export const removeRelation = async ({
         },
       }),
     ])
-
-    revalidatePath(`/post/${postSlug}`)
   } catch (error) {
     throw error
   }
@@ -209,19 +210,33 @@ export const handleCreateUpdatePost = async ({
   }
 }
 
-export const onToggleLikePost = async ({
-  postId,
-  postSlug,
-  isLiked,
-}: {
-  postId: string
-  postSlug: string
-  isLiked: boolean
-}) => {
-  ;(isLiked ? removeRelation : addRelation)({
-    postId,
-    postSlug,
-    action: PostOnUserType.LIKE,
-  })
-  return { postId, postSlug, isLiked: !isLiked }
+const toggleLikePostSchema = z.object({
+  postId: z.string(),
+  postSlug: z.string(),
+  isLiked: z.boolean(),
+})
+
+export type ToggleLikePostSchemaType = ActionState & z.infer<typeof toggleLikePostSchema>
+
+export const onToggleLikePostWithUser = async (
+  data: ToggleLikePostSchemaType,
+  formData: FormData
+) => {
+  try {
+    await (data.isLiked ? removeRelation : addRelation)({
+      postId: data.postId,
+      postSlug: data.postSlug,
+      action: PostOnUserType.LIKE,
+    })
+    return {
+      postId: data.postId,
+      postSlug: data.postSlug,
+      isLiked: !data.isLiked,
+      success: "Success",
+    }
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Unknown error" }
+  } finally {
+    revalidatePath(`/post/${data.postSlug}`)
+  }
 }
