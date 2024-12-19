@@ -3,14 +3,10 @@ import Link from "next/link"
 
 import { auth } from "configs/auth"
 import APP_ROUTES from "constants/routes"
-import { PostStatus } from "database"
-import { updatePostStatus } from "database/src/posts/queries"
+import { TPostItem } from "database"
 import { LucideEdit } from "lucide-react"
 import { getTranslations } from "next-intl/server"
-import { Button, buttonVariants, cn, toast } from "ui"
-
-import { onTogglePost } from "@/actions/protect/postAction"
-import { TPostItem } from "@/types/posts"
+import { buttonVariants, cn } from "ui"
 
 import TogglePost from "./toggle-post"
 

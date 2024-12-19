@@ -169,19 +169,22 @@ export const getLikers = async ({ postId }: { postId: string }) => {
   }
 }
 
-export async function onTogglePost({ post }: { post: TPostItem }): Promise<{ post: TPostItem }> {
+export async function onTogglePost(
+  prevState: { post: TPostItem },
+  _
+): Promise<{ post: TPostItem }> {
   try {
     const { data } = await updatePostStatus(
-      post.id,
-      post.postStatus === PostStatus.DRAFT ? PostStatus.PUBLISHED : PostStatus.DRAFT,
-      post?.author?.id
+      prevState.post.id,
+      prevState.post.postStatus === PostStatus.DRAFT ? PostStatus.PUBLISHED : PostStatus.DRAFT,
+      prevState.post?.author?.id
     )
 
     return { post: data }
   } catch (error) {
     toast.error(error)
   } finally {
-    revalidatePath(`/post/${post.slug}`)
+    revalidatePath(`/post/${prevState.post.slug}`)
   }
 }
 

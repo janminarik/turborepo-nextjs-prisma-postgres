@@ -34,10 +34,15 @@ type ValidatedActionWithUserFunction<S extends z.ZodType<any, any>, T> = (
   session: Session
 ) => Promise<T>
 
-export function validatedActionWithUser<S extends z.ZodType<any, any>, T>(
-  schema: S,
+type ValidatedActionWithUserProps<S extends z.ZodType<any, any>, T> = {
+  schema?: S
   action: ValidatedActionWithUserFunction<S, T>
-) {
+}
+
+export function validatedActionWithUser<S extends z.ZodType<any, any>, T>({
+  schema,
+  action,
+}: ValidatedActionWithUserProps<S, T>) {
   return async (prevState: ActionState, formData: FormData): Promise<T> => {
     const session = await auth()
 
@@ -45,13 +50,15 @@ export function validatedActionWithUser<S extends z.ZodType<any, any>, T>(
       throw new Error("User is not authenticated")
     }
 
+    if (!schema) {
+      return action(prevState, formData, session)
+    }
+
     const result = schema.safeParse(Object.fromEntries(formData))
 
     if (!result.success) {
       return { error: result.error.errors[0].message } as T
     }
-
-    console.log("result>>>", result)
 
     return action(result.data, formData, session)
   }
