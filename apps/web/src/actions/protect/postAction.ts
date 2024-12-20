@@ -243,3 +243,26 @@ export const onToggleLikePostWithUser = async (
     revalidatePath(`/post/${data.postSlug}`)
   }
 }
+
+export const handleBookmark = async (
+  prevState: { postId: string; postSlug: string; isBookmarked: boolean },
+  _: FormData
+) => {
+  try {
+    await (prevState.isBookmarked ? removeRelation : addRelation)({
+      postId: prevState.postId,
+      postSlug: prevState.postSlug,
+      action: PostOnUserType.BOOKMARK,
+    })
+    return {
+      postId: prevState.postId,
+      postSlug: prevState.postSlug,
+      isBookmarked: !prevState.isBookmarked,
+      success: "Success",
+    }
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Unknown error" }
+  } finally {
+    revalidatePath(`/post/${prevState.postSlug}`)
+  }
+}
