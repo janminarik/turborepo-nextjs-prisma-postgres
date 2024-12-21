@@ -2,8 +2,9 @@
 
 import React, { useActionState } from "react"
 
-import { addRelation, handleBookmark, removeRelation } from "actions/protect/postAction"
-import { PostOnUserType, TPostItem } from "database"
+import { handleBookmark } from "actions/protect/postAction"
+import { TPostItem } from "database"
+import { ActionState } from "libs/validationAction"
 import { BookmarkCheck, BookmarkIcon } from "lucide-react"
 import { Button, cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "ui"
 
@@ -20,7 +21,7 @@ const BookmarkButton: React.FC<BookmarkButtonProps> = ({
   isBookmarked,
   post,
 }) => {
-  const [state, formAction, pending] = useActionState(handleBookmark, {
+  const [state, formAction, pending] = useActionState<ActionState, FormData>(handleBookmark, {
     postId: post?.id,
     postSlug: post?.slug,
     isBookmarked: false,

@@ -244,10 +244,7 @@ export const onToggleLikePostWithUser = async (
   }
 }
 
-export const handleBookmark = async (
-  prevState: { postId: string; postSlug: string; isBookmarked: boolean },
-  _: FormData
-) => {
+export const handleBookmark = async (prevState: ActionState, _: FormData) => {
   try {
     await (prevState.isBookmarked ? removeRelation : addRelation)({
       postId: prevState.postId,
