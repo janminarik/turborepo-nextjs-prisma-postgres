@@ -1,6 +1,5 @@
+import { getTotalActions } from "actions/protect/postAction"
 import { PostOnUserType, TPostItem } from "database"
-
-import { getTotalActions } from "@/actions/protect/postAction"
 
 import LikeButton from "./LikeButton"
 import Liker from "./Likers"
@@ -10,7 +9,8 @@ interface LikeButtonProps {
 }
 
 export default async function LikeButtonContainer({ post }: LikeButtonProps) {
-  const { total, haveAction } = await getTotalActions({
+  // Get total like
+  const { total, haveAction: isLiked } = await getTotalActions({
     postId: post.id,
     actionType: PostOnUserType.LIKE,
   })
@@ -19,7 +19,7 @@ export default async function LikeButtonContainer({ post }: LikeButtonProps) {
     <LikeButton
       post={post}
       totalLike={total}
-      isLiked={Boolean(haveAction)}
+      isLiked={Boolean(isLiked)}
     >
       <Liker
         totalLike={total}

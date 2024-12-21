@@ -7,6 +7,8 @@
 
 # About next-forum
 
+next-forum is a next of forum with newest technology
+
 # Installation
 
 Install
@@ -33,10 +35,10 @@ turbo dev
 
 # Libraries
 
-- ReactJS
+- ReactJS - 19.
 - TypeScript
-- NextJS 14 - App router and server actions
-- next-auth
+- NextJS 15. - App router and server actions
+- next-auth 5.
 - Prisma ORM
 - Postgres
 - Turborepo
@@ -55,35 +57,7 @@ turbo dev
 - Husky
 - Prettier
 
-# Functions
-
 # Folder structure
-
-│─── src  
-│────── actions  
-│────── app  
-│────── configs  
-│────── constants  
-│────── emails  
-│────── font  
-│────── hooks  
-│────── i18n.ts  
-│────── libs  
-│────── messages  
-│────── middleware.ts  
-│────── molecules  
-│────── providers  
-│────── types  
-└── types  
-├────── next-auth.d.ts  
-├── package.json  
-├── postcss.config.js  
-├── tailwind.config.js  
-├── tsconfig.json  
-├── components.json  
-├── env.example  
-├── next-env.d.ts  
-├── next.config.mjs  
 
 ## Front side functions
 
@@ -93,7 +67,7 @@ turbo dev
 - [x] CRUD post
 - [x] List post: Search & filter by top or hot week, month, year, infinity
 - [x] Like post
-- [x] Comment on post
+- [ ] Comment on post
 - [x] Share post
 - [x] Manage tag
 - [x] Follow user
@@ -111,9 +85,6 @@ turbo dev
 - [ ] Manage posts
 - [ ] Manage images
 - [ ] Settings: Header/Menu
+- [ ] Manage roles and permission
 
 # DEV NOTES
-
-[[1][DEV NOTE] Initial turbo project and add tailwindcss library](https://dev.to/codeforstartup/dev-note-initial-turbo-project-and-add-tailwindcss-library-4iae)  
-[[2][DEV NOTE] Integrate prisma and postgres database](https://dev.to/codeforstartup/2dev-note-add-prisma-and-postgres-database-2m84)  
-[[3][DEV NOTE] Create a form with tiptap and react-textarea-autosize](https://dev.to/codeforstartup/3dev-note-create-a-form-with-tiptap-and-react-textarea-autosize-1cgn)

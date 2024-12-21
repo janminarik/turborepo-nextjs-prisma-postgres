@@ -3,6 +3,9 @@
 import React from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
+import { TPostItem } from "database"
+import { GetDataSuccessType } from "types"
+import { TCommentItem } from "types/comment"
 import {
   Select,
   SelectContent,
@@ -12,10 +15,6 @@ import {
   SelectValue,
   Typography,
 } from "ui"
-
-import { GetDataSuccessType } from "@/types"
-import { TCommentItem } from "@/types/comment"
-import { TPostItem } from "@/types/posts"
 
 type CommentHeaderProps = {
   post: TPostItem
