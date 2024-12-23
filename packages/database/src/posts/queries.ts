@@ -193,7 +193,8 @@ export const createPost = async (
         authorId: userId,
         postStatus: PostStatus.PUBLISHED,
         tagOnPost: {
-          create: data.tags?.map((tag) => {
+          // @ts-ignore
+          create: data?.tags?.map((tag: any) => {
             if (!tag.__isNew__) {
               return {
                 tag: {
@@ -234,6 +235,7 @@ export const updatePost = async (
   userId: string
 ): Promise<IActionReturn<TPostItem>> => {
   try {
+    // @ts-ignore
     const { tags, ...postData } = data
 
     const post = await prisma.post.update({
@@ -245,7 +247,7 @@ export const updatePost = async (
         ...postData,
         tagOnPost: {
           deleteMany: {},
-          create: tags?.map((tag) => {
+          create: tags?.map((tag: any) => {
             if (!tag.__isNew__) {
               return {
                 tag: {

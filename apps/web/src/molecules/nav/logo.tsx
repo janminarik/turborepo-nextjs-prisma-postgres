@@ -3,8 +3,9 @@
 import React from "react"
 import Link from "next/link"
 
-import { bebasNeue } from "font"
 import { cn } from "ui"
+
+import { bebasNeue } from "@/font"
 
 const Logo: React.FC = () => {
   return (

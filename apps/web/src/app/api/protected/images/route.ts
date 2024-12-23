@@ -2,11 +2,12 @@ import fs from "fs/promises"
 import path from "path"
 import { NextRequest } from "next/server"
 
-import { auth } from "configs/auth"
-import { OrderByField } from "constants/upload"
-import { createImage, getImage, getImages, IImageFilter, ImageOrderBys, OrderBy } from "database"
+import { createImage, getImage, getImages, IImageFilter, ImageOrderBys } from "database"
 import sharp from "sharp"
 import { v4 as uuidv4 } from "uuid"
+
+import { auth } from "@/configs/auth"
+import { OrderByField } from "@/constants/upload"
 
 const OrderMap = {
   [OrderByField.nameAsc]: {
@@ -37,9 +38,9 @@ export async function GET(request: NextRequest) {
   const params: IImageFilter = {
     page,
     limit,
-    search,
-    orderBy: OrderMap[order].orderBy as ImageOrderBys,
-    order: OrderMap[order].order as OrderBy,
+    // search,
+    // orderBy: OrderMap[order].orderBy as ImageOrderBys,
+    // order: OrderMap[order].order as OrderBy,
   }
 
   try {
@@ -155,7 +156,11 @@ export async function POST(request: NextRequest) {
       caption: "",
       url: urls[0],
       mime: file.type,
-      userId: session.user.id,
+      user: {
+        connect: {
+          id: session.user.id,
+        },
+      },
     })
 
     return Response.json({

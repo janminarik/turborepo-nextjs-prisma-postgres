@@ -1,3 +1,3 @@
-import { GET, POST } from "configs/auth"
+import { GET, POST } from "@/configs/auth"
 
 export { GET, POST }

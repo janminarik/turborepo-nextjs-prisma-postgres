@@ -13,7 +13,7 @@ export type UserProfileProps = {
 
 export async function UserProfile({ authorId }: UserProfileProps) {
   const t = await getTranslations()
-  const { data: author, error } = await getUser({ userId: authorId })
+  const { data: author, error } = await getUser({ where: { id: authorId } })
 
   if (error) {
     return notFound()

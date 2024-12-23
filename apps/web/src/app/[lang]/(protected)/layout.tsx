@@ -1,4 +1,4 @@
-import SidebarItem, { SidebarItemProps } from "molecules/sidebar-item"
+import SidebarItem, { SidebarItemProps } from "@/molecules/sidebar-item"
 
 const SIDE_BAR = [
   {

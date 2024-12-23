@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 
-import { getTopTags } from "database"
+import { getTags } from "database"
 import { getTranslations } from "next-intl/server"
 import { Typography } from "ui"
 
@@ -10,7 +10,15 @@ import NumberIndex from "./NumberIndex"
 const TopTag: React.FC = async () => {
   const t = await getTranslations()
 
-  const { data: topTags } = await getTopTags()
+  const { data: topTags } = await getTags({
+    take: 10,
+    skip: 0,
+    // orderBy: {
+    //   tagOnPost: {
+    //     _count: "desc",
+    //   },
+    // },
+  })
 
   return (
     <div className="mt-4 border-t pt-4">
@@ -27,7 +35,7 @@ const TopTag: React.FC = async () => {
                 <Typography variant="strong">#{tag.name}</Typography>
                 <Typography variant="mutedText">
                   {t("common.total_post_plural", {
-                    total: tag?._count?.tagOnPost || 0,
+                    total: 0, //tag?._count?.tagOnPost || 0,
                   })}
                 </Typography>
               </div>

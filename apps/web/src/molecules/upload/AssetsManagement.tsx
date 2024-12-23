@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react"
 
-import { useGetImages } from "hooks/useGetImages"
-import useInfiniteScroll from "hooks/useInfinityScroll"
+import { useGetImages } from "@/hooks/useGetImages"
+import useInfiniteScroll from "@/hooks/useInfinityScroll"
 
 import { useFileManager } from "./FileManagerContainer"
 import ImageList from "./ImageList"

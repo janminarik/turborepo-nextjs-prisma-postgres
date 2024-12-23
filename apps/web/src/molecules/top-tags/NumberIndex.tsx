@@ -2,8 +2,9 @@
 
 import React from "react"
 
-import { bebasNeue } from "font"
 import { cn } from "ui"
+
+import { bebasNeue } from "@/font"
 
 interface NumberIndexProps {
   number: number

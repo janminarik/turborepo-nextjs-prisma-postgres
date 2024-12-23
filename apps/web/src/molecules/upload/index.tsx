@@ -1,7 +1,6 @@
 import { ReactNode, useState } from "react"
 
 import { Image } from "database"
-import { useGetImages } from "hooks/useGetImages"
 import { X } from "lucide-react"
 import { useTranslations } from "next-intl"
 import {
@@ -15,7 +14,9 @@ import {
   Separator,
   Typography,
 } from "ui"
-import { truncateFileName } from "utils/text"
+
+import { useGetImages } from "@/hooks/useGetImages"
+import { truncateFileName } from "@/utils/text"
 
 import AssetManagement from "./AssetsManagement"
 import FileManagerContainer, { useFileManager } from "./FileManagerContainer"

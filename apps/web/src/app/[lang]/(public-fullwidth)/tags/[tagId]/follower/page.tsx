@@ -1,6 +1,5 @@
-import TagDetail from "molecules/tag/tag-detail"
-
-import { getTagById } from "@/actions/public/tags"
+// import { getTagById } from "@/actions/public/tags"
+import TagDetail from "@/molecules/tag/tag-detail"
 
 export const metadata = {
   title: "Tags",
@@ -9,11 +8,7 @@ export const metadata = {
 
 export default async function Page(props: { params: Promise<{ tagId: string }> }) {
   const params = await props.params
-  const tag = await getTagById(params?.tagId as string)
+  // const tag = await getTagById(params?.tagId as string)
 
-  return (
-    <div className="grid grid-cols-12 gap-10">
-      <TagDetail tag={tag} />
-    </div>
-  )
+  return <div className="grid grid-cols-12 gap-10">{/* <TagDetail tag={tag} /> */}</div>
 }

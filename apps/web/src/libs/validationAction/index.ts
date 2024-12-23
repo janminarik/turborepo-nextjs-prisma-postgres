@@ -1,7 +1,8 @@
 // Based on https://next-saas-start.vercel.app/
-import { auth } from "configs/auth"
 import { Session } from "next-auth"
 import { z } from "zod"
+
+import { auth } from "@/configs/auth"
 
 export type ActionState = {
   error?: string

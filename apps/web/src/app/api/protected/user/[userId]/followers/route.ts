@@ -1,8 +1,9 @@
 import { revalidatePath } from "next/cache"
 import { NextRequest } from "next/server"
 
-import { auth } from "configs/auth"
 import prisma from "database"
+
+import { auth } from "@/configs/auth"
 
 export async function GET(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
   const params = await props.params

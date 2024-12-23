@@ -1,7 +1,7 @@
 import React from "react"
 
-import APP_APIS from "constants/apis"
-import { generateApi } from "utils/generatePath"
+import APP_APIS from "@/constants/apis"
+import { generateApi } from "@/utils/generatePath"
 
 import FollowerItem from "./follower-item"
 

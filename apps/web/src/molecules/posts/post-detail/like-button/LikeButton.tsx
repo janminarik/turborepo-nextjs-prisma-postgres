@@ -2,12 +2,13 @@
 
 import { useActionState } from "react"
 
-import { onToggleLikePostWithUser, ToggleLikePostSchemaType } from "actions/protect/postAction"
 import { TPostItem } from "database"
-import { ActionState } from "libs/validationAction"
 import { Heart } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Button, cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "ui"
+
+import { onToggleLikePostWithUser, ToggleLikePostSchemaType } from "@/actions/protect/postAction"
+import { ActionState } from "@/libs/validationAction"
 
 type LikeButtonProps = {
   post: TPostItem

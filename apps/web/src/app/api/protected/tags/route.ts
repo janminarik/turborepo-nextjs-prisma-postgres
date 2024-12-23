@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const search = newUrl.searchParams.get("search") || ""
 
   try {
-    const posts = await prisma.tags.findMany({
+    const posts = await prisma.tag.findMany({
       where: {
         name: {
           contains: search,

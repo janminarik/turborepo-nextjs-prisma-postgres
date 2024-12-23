@@ -1,7 +1,8 @@
-import { DEFAULT_TAG_PAGE_LIMIT } from "constants"
 import { NextRequest } from "next/server"
 
 import prisma, { Prisma, tagListSelect } from "database"
+
+import { DEFAULT_TAG_PAGE_LIMIT } from "@/constants"
 
 export async function GET(request: NextRequest) {
   const newUrl = request.nextUrl.clone()
@@ -19,12 +20,12 @@ export async function GET(request: NextRequest) {
         mode: "insensitive",
       },
     },
-  } as Prisma.TagsFindManyArgs
+  } as Prisma.TagFindManyArgs
 
   try {
     const [data, total] = await Promise.all([
-      prisma.tags.findMany(query),
-      prisma.tags.count({
+      prisma.tag.findMany(query),
+      prisma.tag.count({
         where: query.where,
       }),
     ])

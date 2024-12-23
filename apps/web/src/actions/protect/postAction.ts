@@ -3,8 +3,6 @@
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
-import { auth } from "configs/auth"
-import APP_ROUTES from "constants/routes"
 import prisma, {
   createPost,
   PostOnUserType,
@@ -15,10 +13,13 @@ import prisma, {
   updatePost,
   updatePostStatus,
 } from "database"
-import { ActionState, validatedActionWithUser } from "libs/validationAction"
 import { toast } from "react-toastify"
-import { TUserItem, userSelect } from "types/users"
 import * as z from "zod"
+
+import { auth } from "@/configs/auth"
+import APP_ROUTES from "@/constants/routes"
+import { ActionState, validatedActionWithUser } from "@/libs/validationAction"
+import { TUserItem, userSelect } from "@/types/users"
 
 export const getTotalActions = async ({
   postId,

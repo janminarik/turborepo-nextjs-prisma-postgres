@@ -2,11 +2,12 @@
 
 import React, { useActionState } from "react"
 
-import { handleBookmark } from "actions/protect/postAction"
 import { TPostItem } from "database"
-import { ActionState } from "libs/validationAction"
 import { BookmarkCheck, BookmarkIcon } from "lucide-react"
 import { Button, cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "ui"
+
+import { handleBookmark } from "@/actions/protect/postAction"
+import { ActionState } from "@/libs/validationAction"
 
 interface BookmarkButtonProps {
   totalBookmark: number

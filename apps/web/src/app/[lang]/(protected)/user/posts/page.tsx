@@ -1,13 +1,14 @@
 import React from "react"
 import { Metadata } from "next/types"
 
-import { auth } from "configs/auth"
 import { getUser } from "database"
-import PageTitle from "molecules/page-title"
+
+import { auth } from "@/configs/auth"
+import PageTitle from "@/molecules/page-title"
 
 export async function generateMetadata(): Promise<Metadata> {
   const session = await auth()
-  const user = await getUser({ userId: session?.user?.id })
+  const user = await getUser({ where: { id: session?.user?.id } })
 
   return {
     title: `Posts - ${user?.data?.name}`,

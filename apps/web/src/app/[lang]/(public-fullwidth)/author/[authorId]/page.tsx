@@ -1,6 +1,7 @@
 import { getUser } from "database"
-import UserProfile from "molecules/follower/user-profile"
-import PostList from "molecules/posts/post-list"
+
+import UserProfile from "@/molecules/follower/user-profile"
+import PostList from "@/molecules/posts/post-list"
 
 export const generateMetadata = async (props) => {
   const params = await props.params

@@ -2,10 +2,11 @@
 
 import { useActionState } from "react"
 
-import { onTogglePost } from "actions/protect/postAction"
 import { PostStatus, TPostItem } from "database"
 import { useTranslations } from "next-intl"
 import { Button } from "ui"
+
+import { onTogglePost } from "@/actions/protect/postAction"
 
 export default function TogglePost({ post }: { post: TPostItem }) {
   const t = useTranslations()

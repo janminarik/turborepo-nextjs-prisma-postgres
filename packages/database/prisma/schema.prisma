@@ -133,12 +133,12 @@ model TagOnPost {
   postId    String
   tagId     String
   post      Post     @relation(fields: [postId], references: [id])
-  tag       Tags     @relation(fields: [tagId], references: [id])
+  tag       Tag      @relation(fields: [tagId], references: [id])
 
   @@id([postId, tagId])
 }
 
-model Tags {
+model Tag {
   id             String      @id @default(cuid())
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt
@@ -235,7 +235,7 @@ model Image {
   userId     String
   user       User     @relation(fields: [userId], references: [id])
   posts      Post[]
-  tags       Tags[]
+  tags       Tag[]
 }
 
 enum UserType {

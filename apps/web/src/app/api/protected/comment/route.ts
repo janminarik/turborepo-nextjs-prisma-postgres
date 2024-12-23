@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server"
 
-import { auth } from "configs/auth"
 import prisma from "database"
 import { z } from "zod"
 
+import { auth } from "@/configs/auth"
 import { commentSelect } from "@/types/comment"
 
 export async function POST(request: NextRequest) {

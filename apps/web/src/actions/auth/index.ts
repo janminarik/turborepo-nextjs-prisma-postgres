@@ -1,12 +1,13 @@
 "use server"
 
 import bcryptjs from "bcryptjs"
-import { signIn, signOut } from "configs/auth"
 import { Prisma } from "database"
 import { createUser } from "database/src/users/queries"
-import { sendEmail } from "emails"
 import VerifyEmail from "emails/verify-email"
-import { redirect } from "utils/navigation"
+
+import { signIn, signOut } from "@/configs/auth"
+import { sendEmail } from "@/emails"
+import { redirect } from "@/utils/navigation"
 
 import { SignUpDataOutput, signUpSchema } from "./type"
 

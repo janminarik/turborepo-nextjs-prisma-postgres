@@ -2,12 +2,12 @@
 
 import React from "react"
 
-import APP_APIS from "constants/apis"
 import { useForm } from "react-hook-form"
 import { Button, Input, Label, Textarea, Typography } from "ui"
-import { generatePath } from "utils/generatePath"
 
+import APP_APIS from "@/constants/apis"
 import { TUserItem } from "@/types/users"
+import { generatePath } from "@/utils/generatePath"
 
 type ProfileType = {
   user: TUserItem

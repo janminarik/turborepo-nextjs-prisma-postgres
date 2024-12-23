@@ -15,12 +15,7 @@ export const tagListSelect = {
   totalFollowers: true,
   updatedAt: true,
   createdAt: true,
-  _count: {
-    select: {
-      tagOnPost: true,
-    },
-  },
-} satisfies Prisma.TagsSelect
+} satisfies Prisma.TagSelect
 
 export const tagItemSelect = {
   id: true,
@@ -31,17 +26,23 @@ export const tagItemSelect = {
   totalFollowers: true,
   updatedAt: true,
   createdAt: true,
-  _count: {
+  image: {
     select: {
-      tagOnPost: true,
+      id: true,
+      url: true,
     },
   },
-} satisfies Prisma.TagsSelect
+  // _count: {
+  //   select: {
+  //     tagOnPost: true,
+  //   },
+  // },
+} satisfies Prisma.TagSelect
 
-export type TTagItem = Prisma.TagsGetPayload<{
+export type TTagItem = Prisma.TagGetPayload<{
   select: typeof tagItemSelect
 }>
 
-export type TTagListItem = Prisma.TagsGetPayload<{
+export type TTagListItem = Prisma.TagGetPayload<{
   select: typeof tagListSelect
 }>

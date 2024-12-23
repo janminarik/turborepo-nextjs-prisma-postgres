@@ -1,7 +1,8 @@
 import React from "react"
 
-import { getTotalActions } from "actions/protect/postAction"
 import { PostOnUserType, TPostItem } from "database"
+
+import { getTotalActions } from "@/actions/protect/postAction"
 
 import BookmarkButton from "./BookmarkButton"
 
