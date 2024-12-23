@@ -1,17 +1,18 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-import PostDetail from "molecules/posts/post-detail"
-import Comments from "molecules/posts/post-detail/comments"
-import LikeButton from "molecules/posts/post-detail/like-button"
-import TableOfContents from "molecules/posts/post-detail/table-of-contents"
-import BookmarkButton from "molecules/posts/post-item/bookmark-button"
+import PostDetail from "@/molecules/posts/post-detail"
+import Comments from "@/molecules/posts/post-detail/comments"
+import LikeButton from "@/molecules/posts/post-detail/like-button"
+import TableOfContents from "@/molecules/posts/post-detail/table-of-contents"
+import BookmarkButton from "@/molecules/posts/post-item/bookmark-button"
 
 import "./tocbot.css"
 
-import { auth } from "configs/auth"
 import { getPost, PostStatus } from "database"
-import { TSearchParams } from "types"
+
+import { auth } from "@/configs/auth"
+import { TSearchParams } from "@/types"
 
 export async function generateMetadata(props): Promise<Metadata> {
   const params = await props.params

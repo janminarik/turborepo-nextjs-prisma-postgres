@@ -1,10 +1,11 @@
 import React, { use } from "react"
 
-import { getLikers } from "actions/protect/postAction"
 import { TPostItem } from "database"
-import FollowerItem from "molecules/follower/followers/follower-item"
 import { useTranslations } from "next-intl"
 import { Button, Dialog, DialogContent, DialogHeader, DialogTrigger, Typography } from "ui"
+
+import { getLikers } from "@/actions/protect/postAction"
+import FollowerItem from "@/molecules/follower/followers/follower-item"
 
 interface LikerProps {
   totalLike: number

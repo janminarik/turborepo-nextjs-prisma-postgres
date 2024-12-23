@@ -1,6 +1,6 @@
 import React from "react"
 
-import SignUp from "molecules/auth/sign-up"
+import SignUp from "@/molecules/auth/sign-up"
 
 const RegisterPage: React.FC = () => {
   return (

@@ -1,10 +1,10 @@
 import Link from "next/link"
 
-import { TTagItem } from "database"
+import { TTagListItem } from "database"
 import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader, Typography } from "ui"
 
-export default function TagItem({ tag }: { tag: TTagItem }) {
+export default function TagItem({ tag }: { tag: TTagListItem }) {
   const t = useTranslations("common")
 
   return (
@@ -28,7 +28,7 @@ export default function TagItem({ tag }: { tag: TTagItem }) {
               variant="span"
               className="font-semibold"
             >
-              {t("post_plural", { total: tag?._count?.tagOnPost || 0 })}
+              {tag?.description}
             </Typography>
           </div>
         </CardContent>

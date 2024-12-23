@@ -3,10 +3,11 @@
 import { useTransition } from "react"
 import { useParams } from "next/navigation"
 
-import { locales } from "i18n"
 import { useTranslations } from "next-intl"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "ui"
-import { usePathname, useRouter } from "utils/navigation"
+
+import { locales } from "@/i18n"
+import { usePathname, useRouter } from "@/utils/navigation"
 
 const LanguageSwitcher = () => {
   const router = useRouter()

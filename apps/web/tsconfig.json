@@ -7,12 +7,10 @@
         "name": "next"
       }
     ],
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*",
-        "@/*",
-        "assets/*"
+        "src/*"
       ],
       "emails/*": [
         "src/emails/*"

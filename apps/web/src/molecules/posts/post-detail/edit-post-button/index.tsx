@@ -1,12 +1,13 @@
 import React from "react"
 import Link from "next/link"
 
-import { auth } from "configs/auth"
-import APP_ROUTES from "constants/routes"
 import { TPostItem } from "database"
 import { LucideEdit } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import { buttonVariants, cn } from "ui"
+
+import { auth } from "@/configs/auth"
+import APP_ROUTES from "@/constants/routes"
 
 import TogglePost from "./toggle-post"
 

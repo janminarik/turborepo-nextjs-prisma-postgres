@@ -20,7 +20,7 @@ import {
   IGetListResponse,
   PeriodValues,
 } from "./shared/type"
-import { createTag, getTag, getTags, getTopTags } from "./tags/queries"
+import { createTag, getTag, getTags } from "./tags/queries"
 import type { TTagItem, TTagListItem } from "./tags/selects"
 import { tagListSelect } from "./tags/selects"
 import { createUser, getUser, updateUser } from "./users/queries"
@@ -34,7 +34,6 @@ export {
   createTag,
   getTag,
   getTags,
-  getTopTags,
   tagListSelect,
 
   // Posts

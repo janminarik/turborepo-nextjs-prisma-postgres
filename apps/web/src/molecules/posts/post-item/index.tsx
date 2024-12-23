@@ -1,12 +1,13 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import APP_ROUTES from "constants/routes"
 import { TPostItem } from "database"
-import TagListMeta from "molecules/tag/tag-list-meta"
 import { useTranslations } from "next-intl"
 import { Typography } from "ui"
-import { generatePath } from "utils/generatePath"
+
+import APP_ROUTES from "@/constants/routes"
+import TagListMeta from "@/molecules/tag/tag-list-meta"
+import { generatePath } from "@/utils/generatePath"
 
 import CommentButton from "./comment-button"
 import LikeButton from "./like-button"

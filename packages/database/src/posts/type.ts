@@ -1,6 +1,6 @@
 import { PostStatus } from "@prisma/client"
-import { IActionReturn, IGetListResponse } from "src/shared/type"
 
+import { IActionReturn, IGetListResponse } from "../shared/type"
 import { TPostItem } from "./selects"
 
 export type TGetPostsResponse = IActionReturn<IGetListResponse<TPostItem>>

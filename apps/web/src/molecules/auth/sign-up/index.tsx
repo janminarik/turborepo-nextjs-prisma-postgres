@@ -17,11 +17,10 @@ import {
   Input,
   Typography,
 } from "ui"
-import { redirect } from "utils/navigation"
-import { z } from "zod"
 
 import { signUp } from "@/actions/auth"
 import { SignUpDataInput, signUpSchema } from "@/actions/auth/type"
+import { redirect } from "@/utils/navigation"
 
 import AuthForm from "../auth-form"
 
@@ -56,9 +55,9 @@ export default function SignUp() {
     }
     if (error.fieldErrors) {
       Object?.entries(error.fieldErrors)?.forEach(([field, message]) => {
-        setError(field, {
+        setError(field as keyof SignUpDataInput, {
           type: "manual",
-          message,
+          message: message.at(0),
         })
       })
       return

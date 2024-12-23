@@ -1,6 +1,6 @@
-import PageTitle from "molecules/page-title"
-import Filter from "molecules/tag/filter"
-import TagList from "molecules/tag/tag-list"
+import PageTitle from "@/molecules/page-title"
+import Filter from "@/molecules/tag/filter"
+import TagList from "@/molecules/tag/tag-list"
 
 export const metadata = {
   title: "Tags",

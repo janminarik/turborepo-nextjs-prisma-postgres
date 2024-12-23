@@ -1,8 +1,9 @@
 import React from "react"
 
+import { TPostItem } from "database"
+
 import { GetDataSuccessType, TSearchParams } from "@/types"
 import { TCommentItem } from "@/types/comment"
-import { TPostItem } from "@/types/posts"
 
 import CommentHeader from "./comment-header"
 import CommentList from "./comment-list"

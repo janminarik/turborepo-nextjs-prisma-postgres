@@ -1,8 +1,7 @@
 import React from "react"
 
+import { TPostItem } from "database"
 import reactHtmlParser from "react-html-parser"
-
-import { TPostItem } from "@/types/posts"
 
 interface PostContentProps {
   post: TPostItem

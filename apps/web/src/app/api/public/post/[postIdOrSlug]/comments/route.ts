@@ -19,9 +19,9 @@ export async function GET(
     commentOnPostId: params.postIdOrSlug,
   }
 
-  const orderBy: Prisma.CommentOrderByWithRelationAndSearchRelevanceInput = {
-    updatedAt: sort === "new" ? "desc" : "asc",
-  }
+  // const orderBy: Prisma.CommentOrderByWithRelationAndSearchRelevanceInput = {
+  //   updatedAt: sort === "new" ? "desc" : "asc",
+  // }
 
   if (searchTerm) {
     where = {
@@ -41,9 +41,9 @@ export async function GET(
         select: commentSelect,
         take: Number(limit),
         skip: (Number(page) - 1) * Number(limit),
-        orderBy: {
-          ...orderBy,
-        },
+        // orderBy: {
+        //   ...orderBy,
+        // },
       }),
     ])
 

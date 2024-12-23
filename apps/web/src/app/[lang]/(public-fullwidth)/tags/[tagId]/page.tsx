@@ -1,6 +1,7 @@
 import { getTag } from "database"
-import PostList from "molecules/posts/post-list"
-import TagDetail from "molecules/tag/tag-detail"
+
+import PostList from "@/molecules/posts/post-list"
+import TagDetail from "@/molecules/tag/tag-detail"
 
 export const generateMetadata = async (props) => {
   const params = await props.params

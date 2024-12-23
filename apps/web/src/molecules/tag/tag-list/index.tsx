@@ -3,15 +3,16 @@
 import React, { useCallback, useState } from "react"
 import { useParams } from "next/navigation"
 
-import { getTags, TTagItem } from "database"
-import InfiniteScroll from "molecules/infinite-scroll"
+import { getTags, TTagListItem } from "database"
+
+import InfiniteScroll from "@/molecules/infinite-scroll"
 
 import TagItem from "../tag-item"
 
 const TagList: React.FC = () => {
   const searchParams = useParams()
   const [isLoading, setIsLoading] = useState(false)
-  const [tags, setTags] = useState<TTagItem[]>([])
+  const [tags, setTags] = useState<TTagListItem[]>([])
   const [page, setPage] = useState(1)
   const [hasNextPage, setHasNextPage] = useState(true)
 
@@ -21,7 +22,6 @@ const TagList: React.FC = () => {
     setIsLoading(true)
     const { data } = await getTags({
       ...searchParams,
-      page,
     })
 
     setTags((prev) => [...prev, ...data?.data])

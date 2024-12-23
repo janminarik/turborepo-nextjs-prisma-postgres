@@ -2,11 +2,12 @@
 
 import { useRef } from "react"
 
-import { useUploadImage } from "hooks/useUploadImage"
 import { Upload } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { toast } from "react-toastify"
 import { LoadingButton } from "ui"
+
+import { useUploadImage } from "@/hooks/useUploadImage"
 
 const UploadImageButton = () => {
   const fileInputRef = useRef<HTMLInputElement>(null)

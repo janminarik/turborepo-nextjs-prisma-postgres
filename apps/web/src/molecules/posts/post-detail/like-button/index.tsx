@@ -1,5 +1,6 @@
-import { getTotalActions } from "actions/protect/postAction"
 import { PostOnUserType, TPostItem } from "database"
+
+import { getTotalActions } from "@/actions/protect/postAction"
 
 import LikeButton from "./LikeButton"
 import Liker from "./Likers"

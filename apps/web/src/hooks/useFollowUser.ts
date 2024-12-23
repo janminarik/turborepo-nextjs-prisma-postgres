@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 
-import APP_APIS from "constants/apis"
 import { toast } from "react-toastify"
-import { generatePath } from "utils/generatePath"
+
+import APP_APIS from "@/constants/apis"
+import { generatePath } from "@/utils/generatePath"
 
 const useFollowUser = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)

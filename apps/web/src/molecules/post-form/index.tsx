@@ -6,10 +6,8 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import APP_ROUTES from "constants/routes"
 import { Prisma, TImage, TPostItem } from "database"
 import { Upload as UploadIcon, X } from "lucide-react"
-import InputTitle from "molecules/input-title"
 import { useSession } from "next-auth/react"
 import { useTranslations } from "next-intl"
 import { Controller, useForm } from "react-hook-form"
@@ -18,6 +16,8 @@ import { Button, buttonVariants, cn, Label, LoadingButton, Typography } from "ui
 import z from "zod"
 
 import { handleCreateUpdatePost } from "@/actions/protect/postAction"
+import APP_ROUTES from "@/constants/routes"
+import InputTitle from "@/molecules/input-title"
 
 import Upload from "../upload"
 
@@ -28,7 +28,7 @@ const PostForm = ({ post: postData }: { post?: TPostItem }) => {
 
   const t = useTranslations()
   const session = useSession()
-  const [image, setImage] = useState<TImage | null>(postData?.Image)
+  const [image, setImage] = useState(postData?.image)
 
   const userId = session?.data?.user?.id
 

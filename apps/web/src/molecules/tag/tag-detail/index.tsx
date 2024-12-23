@@ -32,7 +32,7 @@ export default async function TagDetail({ tagIdOrSlug }: { tagIdOrSlug: string }
             </Typography>
             <div className="mt-4 flex w-full flex-1 divide-x">
               <div className="flex flex-1 flex-col items-center justify-center">
-                <div className="font-bold text-slate-800">{tag?._count?.tagOnPost || 0}</div>
+                <div className="font-bold text-slate-800">{0}</div>
                 <div className="text-gray-400 hover:underline">
                   <Link href={`/tags/${tag.id}`}>posts</Link>
                 </div>

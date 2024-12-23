@@ -1,15 +1,16 @@
 import { NextRequest } from "next/server"
 
-import { auth } from "configs/auth"
 import prisma from "database"
+
+import { auth } from "@/configs/auth"
 
 export async function GET(request: NextRequest, props: { params: Promise<{ userId: string }> }) {
   const params = await props.params
   const { userId } = params
 
-  try {
-    const currentUser = await getServerSession()
+  const currentUser = await auth()
 
+  try {
     if (!currentUser) {
       return Response.json({ isFollowing: false }, { status: 200 })
     }

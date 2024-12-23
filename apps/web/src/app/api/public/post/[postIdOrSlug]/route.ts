@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server"
 
-import { postSelect } from "@/types/posts"
+import prisma from "database"
 
 export async function GET(
   request: NextRequest,
@@ -22,7 +22,7 @@ export async function GET(
         //   },
         // ],
       },
-      select: postSelect,
+      // select: postSelect,
     })
 
     if (!post)

@@ -1,6 +1,5 @@
 import Link from "next/link"
 
-import { auth } from "configs/auth"
 import { getTranslations } from "next-intl/server"
 import {
   Avatar,
@@ -17,6 +16,8 @@ import {
   DropdownMenuTrigger,
   Typography,
 } from "ui"
+
+import { auth } from "@/configs/auth"
 
 import { LogoutMenu } from "./LogoutMenu"
 

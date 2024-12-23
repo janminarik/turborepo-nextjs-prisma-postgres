@@ -4,11 +4,12 @@ import "./globals.css"
 import "ui/dist/index.css"
 import "react-toastify/dist/ReactToastify.css"
 
-import Footer from "molecules/footer"
-import Nav from "molecules/nav"
 import { NextIntlClientProvider, useMessages } from "next-intl"
-import { Providers } from "providers"
 import { ToastContainer } from "react-toastify"
+
+import Footer from "@/molecules/footer"
+import Nav from "@/molecules/nav"
+import { Providers } from "@/providers"
 
 export const metadata = {
   icons: {

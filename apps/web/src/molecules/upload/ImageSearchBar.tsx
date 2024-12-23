@@ -1,6 +1,5 @@
 "use client"
 
-import { OrderByField } from "constants/upload"
 import { ArrowDownWideNarrow } from "lucide-react"
 import { useTranslations } from "next-intl"
 import {
@@ -14,6 +13,8 @@ import {
   DropdownMenuTrigger,
   Input,
 } from "ui"
+
+import { OrderByField } from "@/constants/upload"
 
 import { useFileManager } from "./FileManagerContainer"
 

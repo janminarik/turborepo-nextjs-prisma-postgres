@@ -3,12 +3,12 @@
 import React from "react"
 import Link from "next/link"
 
-import APP_ROUTES from "constants/routes"
 import dayjs from "dayjs"
-import { Avatar, AvatarFallback, AvatarImage, Button, Typography } from "ui"
-import { generatePath } from "utils/generatePath"
+import { Avatar, AvatarFallback, AvatarImage, Typography } from "ui"
 
+import APP_ROUTES from "@/constants/routes"
 import { TCommentItem } from "@/types/comment"
+import { generatePath } from "@/utils/generatePath"
 
 interface CommentItemProps {
   comment: TCommentItem

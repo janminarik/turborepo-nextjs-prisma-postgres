@@ -1,7 +1,7 @@
 import * as React from "react"
 
-import { Skeleton } from "@/components/ui/skeleton"
-import { cn } from "@/lib/utils"
+import { cn } from "../../../lib/utils"
+import { Skeleton } from "../../ui/skeleton"
 
 interface PostSkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   total?: number

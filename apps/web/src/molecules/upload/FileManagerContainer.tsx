@@ -1,7 +1,8 @@
 import React, { createContext, useCallback, useContext, useReducer } from "react"
 
-import { OrderByField } from "constants/upload"
-import { Image, OrderBy } from "database"
+import { Image, ImageOrderBys } from "database"
+
+import { OrderByField } from "@/constants/upload"
 
 export type FileManagerState = {
   selectedFiles: Image[]
@@ -62,7 +63,7 @@ const FileManagerContainer = ({ children }: { children: React.ReactNode }) => {
     dispatch({ type: "SET_SEARCH", payload: search })
   }, [])
 
-  const setOrder = useCallback((order: OrderBy) => {
+  const setOrder = useCallback((order: ImageOrderBys) => {
     dispatch({ type: "SET_ORDER", payload: order })
   }, [])
 
