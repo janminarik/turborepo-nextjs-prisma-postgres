@@ -76,6 +76,12 @@
   },
   "pnpm": {
     "overrides": {
+      "vaul>react": "^19.0.1",
+      "vaul>react-dom": "^19.0.1",
+      "vaul>@types/react": "^19.0.1",
+      "vaul>@types/react-dom": "^19.0.1",
+      "react": "^19.0.1",
+      "react-dom": "^19.0.1",
       "@types/react": "^19.0.1",
       "@types/react-dom": "^19.0.1"
     }
