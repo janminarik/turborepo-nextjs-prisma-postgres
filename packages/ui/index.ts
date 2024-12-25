@@ -1,4 +1,4 @@
-import "./app/globals.css"
+import "./src/globals.css"
 
 export { Typography } from "./src/components/ui/typography"
 
