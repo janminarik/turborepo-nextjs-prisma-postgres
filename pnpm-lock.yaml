@@ -80,7 +80,7 @@ importers:
         version: 1.6.0(@prisma/client@5.19.1(prisma@5.19.1))(nodemailer@6.9.15)
       '@hookform/resolvers':
         specifier: ^3.3.1
-        version: 3.9.0(react-hook-form@7.53.0(react@19.0.0-rc.1))
+        version: 3.9.0(react-hook-form@7.54.2(react@19.0.0-rc.1))
       '@react-email/components':
         specifier: ^0.0.25
         version: 0.0.25(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
@@ -226,8 +226,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.1(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
       react-hook-form:
-        specifier: ^7.46.1
-        version: 7.53.0(react@19.0.0-rc.1)
+        specifier: ^7.54.2
+        version: 7.54.2(react@19.0.0-rc.1)
       react-html-parser:
         specifier: ^2.0.2
         version: 2.0.2(react@19.0.0-rc.1)
@@ -403,7 +403,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: ^3.9.0
-        version: 3.9.0(react-hook-form@7.53.0(react@19.0.0-rc.1))
+        version: 3.9.0(react-hook-form@7.54.2(react@19.0.0-rc.1))
       '@radix-ui/react-accordion':
         specifier: ^1.1.2
         version: 1.2.0(@types/react-dom@19.0.1)(@types/react@19.0.1)(react-dom@19.0.0-rc.1(react@19.0.0-rc.1))(react@19.0.0-rc.1)
@@ -510,8 +510,8 @@ importers:
         specifier: ^19.0.0-rc.1
         version: 19.0.0-rc.1(react@19.0.0-rc.1)
       react-hook-form:
-        specifier: ^7.53.0
-        version: 7.53.0(react@19.0.0-rc.1)
+        specifier: ^7.54.2
+        version: 7.54.2(react@19.0.0-rc.1)
       tailwind-merge:
         specifier: ^1.14.0
         version: 1.14.0
@@ -6025,8 +6025,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  react-hook-form@7.53.0:
-    resolution: {integrity: sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==}
+  react-hook-form@7.54.2:
+    resolution: {integrity: sha512-eHpAUgUjWbZocoQYUHposymRb4ZP6d0uwUnooL2uOybA9/3tPUvoAKqEWK1WaSiTxxOfTpffNZP7QwlnM3/gEg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -8360,9 +8360,9 @@ snapshots:
     dependencies:
       tslib: 2.7.0
 
-  '@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc.1))':
+  '@hookform/resolvers@3.9.0(react-hook-form@7.54.2(react@19.0.0-rc.1))':
     dependencies:
-      react-hook-form: 7.53.0(react@19.0.0-rc.1)
+      react-hook-form: 7.54.2(react@19.0.0-rc.1)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -13268,7 +13268,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  react-hook-form@7.53.0(react@19.0.0-rc.1):
+  react-hook-form@7.54.2(react@19.0.0-rc.1):
     dependencies:
       react: 19.0.0-rc.1
 
