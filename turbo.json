@@ -23,6 +23,9 @@
       "cache": false,
       "persistent": true
     },
+    "clean": {
+      "cache": false
+    },
     "install": {
       "cache": false
     },

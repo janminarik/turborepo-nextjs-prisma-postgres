@@ -150,19 +150,6 @@ export {
 } from "./src/components/ui/dropdown-menu"
 
 export {
-  Drawer,
-  DrawerPortal,
-  DrawerOverlay,
-  DrawerTrigger,
-  DrawerClose,
-  DrawerContent,
-  DrawerHeader,
-  DrawerFooter,
-  DrawerTitle,
-  DrawerDescription,
-} from "./src/components/ui/drawer"
-
-export {
   Dialog,
   DialogPortal,
   DialogOverlay,

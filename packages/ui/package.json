@@ -16,7 +16,8 @@
     "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "lint": "eslint \"**/*.ts*\"",
-    "generate:component": "turbo gen react-component"
+    "generate:component": "turbo gen react-component",
+    "clean": "rm -rf dist && rm -rf node_modules && rm -rf pnpm-lock.yaml && rm -rf yarn.lock && rm -rf package-lock.json && rm -rf .turbo"
   },
   "devDependencies": {
     "@types/react": "19.0.1",
@@ -76,10 +77,6 @@
   },
   "pnpm": {
     "overrides": {
-      "vaul>react": "^19.0.1",
-      "vaul>react-dom": "^19.0.1",
-      "vaul>@types/react": "^19.0.1",
-      "vaul>@types/react-dom": "^19.0.1",
       "react": "^19.0.1",
       "react-dom": "^19.0.1",
       "@types/react": "^19.0.1",
