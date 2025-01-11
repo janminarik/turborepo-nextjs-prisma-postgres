@@ -11,11 +11,7 @@ type FollowerItemProps = {
   showFollowButton?: boolean
 }
 
-const FollowerItem = ({
-  user,
-  className = "",
-  showFollowButton = true,
-}: FollowerItemProps) => {
+const FollowerItem = ({ user, className = "", showFollowButton = true }: FollowerItemProps) => {
   return (
     <div className={cn("flex rounded-md border p-8", className)}>
       <div className="flex-1">

@@ -9,7 +9,7 @@ import { Button, buttonVariants, cn } from "ui"
 
 import useFollowUser from "@/hooks/useFollowUser"
 
-const FollowButton= ({ authorId }: { authorId: string }) => {
+const FollowButton = ({ authorId }: { authorId: string }) => {
   const t = useTranslations()
   const session = useSession()
 

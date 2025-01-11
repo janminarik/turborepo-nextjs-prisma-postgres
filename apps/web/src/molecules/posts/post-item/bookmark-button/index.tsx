@@ -11,10 +11,7 @@ type BookmarkButtonContainerProps = {
   showCount?: boolean
 }
 
-const BookmarkButtonContainer = async ({
-  post,
-  showCount,
-}: BookmarkButtonContainerProps) => {
+const BookmarkButtonContainer = async ({ post, showCount }: BookmarkButtonContainerProps) => {
   const { total, haveAction } = await getTotalActions({
     postId: post.id,
     actionType: PostOnUserType.BOOKMARK,

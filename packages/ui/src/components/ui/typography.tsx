@@ -57,21 +57,16 @@ const variantElementMap: Record<NonNullable<VariantPropType["variant"]>, string>
   code: "code",
 }
 
-export interface TypographyProps
-  extends React.HTMLAttributes<HTMLElement> {
+export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   variant?: VariantPropType["variant"]
   asChild?: boolean
   as?: string
 }
 
-const Typography = (
-  { className, variant, as, asChild, ...props }: TypographyProps
-) => {
-  const Comp = asChild
-    ? Slot
-    : (as ?? (variant ? variantElementMap[variant] : undefined) ?? "div")
-    return (
-      <Comp
+const Typography = ({ className, variant, as, asChild, ...props }: TypographyProps) => {
+  const Comp = asChild ? Slot : (as ?? (variant ? variantElementMap[variant] : undefined) ?? "div")
+  return (
+    <Comp
       className={cn(typographyVariants({ variant, className }))}
       {...props}
     />
