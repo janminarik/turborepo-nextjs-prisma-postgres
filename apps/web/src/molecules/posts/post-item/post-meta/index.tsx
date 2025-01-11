@@ -11,7 +11,7 @@ type PostMetaProps = {
   post: TPostItem
 }
 
-const PostMeta: React.FC<PostMetaProps> = ({ post }) => {
+const PostMeta = ({ post }: PostMetaProps) => {
   if (!post?.author) return null
 
   return (

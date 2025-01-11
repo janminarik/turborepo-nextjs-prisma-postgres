@@ -1,6 +1,6 @@
 import React from "react"
 
-const ResetPasswordPage: React.FC = () => {
+const ResetPasswordPage = () => {
   return (
     <div>
       <h1>Forgot Password</h1>

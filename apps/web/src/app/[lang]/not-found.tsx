@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 
-const NotFound: React.FC = () => {
+const NotFound = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-8 pt-20">
       <h1 className="flex flex-col justify-center text-center text-4xl font-bold tracking-tight text-slate-800">

@@ -12,7 +12,7 @@ type CommentButtonProps = {
   post: TPostItem
 }
 
-const CommentButton: React.FC<CommentButtonProps> = ({ post }) => {
+const CommentButton = ({ post }) => {
   return (
     <TooltipProvider>
       <Tooltip>

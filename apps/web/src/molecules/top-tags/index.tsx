@@ -7,7 +7,7 @@ import { Typography } from "ui"
 
 import NumberIndex from "./NumberIndex"
 
-const TopTag: React.FC = async () => {
+const TopTag = async () => {
   const t = await getTranslations()
 
   const { data: topTags } = await getTags({

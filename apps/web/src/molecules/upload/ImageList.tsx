@@ -11,7 +11,7 @@ type ImageListProps = {
   isLoading: boolean
 }
 
-const ImageList: React.FC<ImageListProps> = ({ images, isLoading }) => {
+const ImageList = ({ images, isLoading }) => {
   if (isLoading) {
     return <Loading />
   }

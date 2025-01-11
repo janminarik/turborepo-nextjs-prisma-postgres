@@ -6,7 +6,8 @@
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "clean": "turbo run clean && rm -rf node_modules && rm -rf .turbo"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
@@ -26,5 +27,9 @@
   "version": "1.0.0",
   "main": ".eslintrc.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "22.12.0",
+    "pnpm": "9.15.0"
+  }
 }

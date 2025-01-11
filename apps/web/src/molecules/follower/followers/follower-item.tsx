@@ -11,7 +11,7 @@ type FollowerItemProps = {
   showFollowButton?: boolean
 }
 
-const FollowerItem: React.FC<FollowerItemProps> = ({
+const FollowerItem = ({
   user,
   className = "",
   showFollowButton = true,

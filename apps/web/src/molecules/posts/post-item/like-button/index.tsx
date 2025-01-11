@@ -7,7 +7,7 @@ type LikeButtonProps = {
   post: TPostItem
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ post }: LikeButtonProps) => {
+const LikeButton = ({ post }: LikeButtonProps) => {
   const t = useTranslations()
 
   return (

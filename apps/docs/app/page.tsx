@@ -1,9 +1,7 @@
-import { Button } from "ui"
-
 export default function Page() {
   return (
     <>
-      <Button />
+      <h1>Hello World</h1>
     </>
   )
 }

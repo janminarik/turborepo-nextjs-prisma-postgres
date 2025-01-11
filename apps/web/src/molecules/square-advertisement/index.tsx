@@ -4,7 +4,7 @@ import Link from "next/link"
 import { GithubIcon } from "lucide-react"
 import { Typography } from "ui"
 
-const SquareAdvertisement: React.FC = () => {
+const SquareAdvertisement = () => {
   return (
     <div className="flex w-full flex-col justify-end border-4 border-double p-4">
       <Typography className="hidden font-bold lg:block">faster with</Typography>

@@ -32,7 +32,7 @@ interface SelectButtonProps {
   onSelect: (image?: Image) => void
 }
 
-const SelectButton: React.FC<SelectButtonProps> = ({ onSelect }) => {
+const SelectButton = ({ onSelect }: SelectButtonProps) => {
   const t = useTranslations("uploads")
   const { selectedFiles } = useFileManager()
 
@@ -50,7 +50,7 @@ const SelectButton: React.FC<SelectButtonProps> = ({ onSelect }) => {
   )
 }
 
-const SelectedFiles: React.FC = () => {
+const SelectedFiles = () => {
   const t = useTranslations("uploads")
 
   const { selectedFiles, setSelectedFiles } = useFileManager()
@@ -86,14 +86,14 @@ const SelectedFiles: React.FC = () => {
   return <div className="flex h-full items-center">{selectedFiles?.length} files selected</div>
 }
 
-const TotalItems: React.FC = () => {
+const TotalItems = () => {
   const { total } = useFileManager()
   const t = useTranslations("uploads")
 
   return <Typography variant="smallText">{t("total_images", { total: total || 0 })}</Typography>
 }
 
-const Upload: React.FC<UploadProps> = ({ children, onSelect }) => {
+const Upload = ({ children, onSelect }) => {
   const t = useTranslations("uploads")
   const [open, setOpen] = useState(false)
 

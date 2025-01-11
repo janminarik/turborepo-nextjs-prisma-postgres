@@ -9,7 +9,7 @@ import InfiniteScroll from "@/molecules/infinite-scroll"
 
 import TagItem from "../tag-item"
 
-const TagList: React.FC = () => {
+const TagList = () => {
   const searchParams = useParams()
   const [isLoading, setIsLoading] = useState(false)
   const [tags, setTags] = useState<TTagListItem[]>([])

@@ -11,10 +11,10 @@ type BookmarkButtonContainerProps = {
   showCount?: boolean
 }
 
-const BookmarkButtonContainer: React.FC<BookmarkButtonContainerProps> = async ({
+const BookmarkButtonContainer = async ({
   post,
   showCount,
-}) => {
+}: BookmarkButtonContainerProps) => {
   const { total, haveAction } = await getTotalActions({
     postId: post.id,
     actionType: PostOnUserType.BOOKMARK,

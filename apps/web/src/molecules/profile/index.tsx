@@ -13,7 +13,7 @@ type ProfileType = {
   user: TUserItem
 }
 
-const Profile: React.FC<ProfileType> = ({ user }) => {
+const Profile = ({ user }: ProfileType) => {
   const { register, handleSubmit } = useForm<
     TUserItem & {
       firstName: string
